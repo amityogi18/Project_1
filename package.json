@@ -1,6 +1,6 @@
 {
   "name": "c2c-common-lib",
-  "version": "1.7.43",
+  "version": "1.7.51",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@angular/animations": "5.2.10",
-    "@angular/cli": "1.7.4",
+    "@angular/cli": "^6.0.8",
     "@angular/common": "5.2.10",
     "@angular/compiler": "5.2.10",
     "@angular/compiler-cli": "5.2.10",
@@ -89,6 +89,7 @@
     "ts-node": "4.1.0",
     "tslint": "5.9.1",
     "typescript": "2.8.3",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "@angular-devkit/build-angular": "~0.6.8"
   }
 }

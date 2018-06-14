@@ -1,61 +1,67 @@
 <main class='container'>
-  <div class='row mt-3 mb-3'>
-    <section class='col-sm-8'>
-      <h4 class='text-primary'>{{title}}</h4>
-    </section>
-  </div>
-
-  <c2c-type-ahead-filters-form></c2c-type-ahead-filters-form>
-
-  <!-- <form [formGroup]="talentSearchForm" > -->
-    <div class='row mt-3'>
-      <section class='col-10 col-sm-10'>
-        <div class='row'>
-          <article class='col-sm-12 pl-0'>
-            <section class='form-row'>
-              <article class='form-group col-sm-12 pl-0'>
-                <c2c-type-ahead
-                  id="typeAheadSelector"
-                  parentModule="Talent"
-                  displayResult="displayName"
-                  columnToDisplay="typeAheadDisplayName"
-                  columnDataAddOns="primaryName"
-                  placeholderText="Type Last Name, First Name Middle Name, Suffix"
-                  title="Type Name to Search and Press Enter"
-                  [listName]="'mainList'"
-                  [addToList]=true
-                  [service]=typeAheadDataService
-                  [noOfRecordsToReturn]=10
-                  [showCustomModal]=false
-                  [showAddNameModal]=true
-                  [showAddSameNameButton]=true
-                  [showAlias]=true
-                  [showAccentedCharacterIcon]=true
-                  (selectedTypeAheadRecord)="selectedTypeAheadRecord($event)">
-                </c2c-type-ahead>
-                <c2c-type-ahead-name-listing
-                  nonDuplicateRecordProperty='partyId'
-                  [entryList]="'many'"
-                  [listNameId]="'mainList'"
-                  [typeList]="'listGroup'"
-                  [selectFirstItem]=false
-                  errorMsgSelectedRemove="Add Current Name, Current Name selected was removed"
-                  errorMsgFirstItemRequired="Select Current Name">
-                </c2c-type-ahead-name-listing>
-              </article>
-            </section>
-          </article>
-        </div>
-      </section>
-      <section class='col-2 col-sm-2'>
-        <!-- foreign characters search box -->
-        <c2c-modal></c2c-modal>
+    <div class='row mt-3 mb-3'>
+      <section class='col-sm-8'>
+        <h4 class='text-primary'>{{title}}</h4>
       </section>
     </div>
-    <!-- </form>  -->
-    <c2c-type-ahead-modal
-      [fullRecordRouterLink]="'/welcome'"
-      [fullRecordParams]="'addTalentForm'"
-      [typeAheadModalConfig]="typeAheadModalConfig">
-    </c2c-type-ahead-modal>
-</main>
+
+    <c2c-type-ahead-filters-form></c2c-type-ahead-filters-form>
+
+    <!-- <form [formGroup]="talentSearchForm" > -->
+      <div class='row mt-3'>
+        <section class='col-10 col-sm-10'>
+          <div class='row'>
+            <article class='col-sm-12 pl-0'>
+              <section class='form-row'>
+                <article class='form-group col-sm-12 pl-0'>
+                  <c2c-type-ahead
+                    #typeAhead
+                    id="typeAheadSelector"
+                    parentModule=Talent
+                    placeholderText="Type Last Name, First Name Middle Name, Suffix"
+                    title="Type Name to Search and Press Enter"
+                    primaryDisplayColumn=typeAheadDisplayName
+                    columnExtraData=primaryName
+                    secondaryDisplayColumn="primaryName"
+                    [secondaryColumnString]=displayString
+                    [toggleSecondaryDisplay]=true
+                    [listName]="'mainList'"
+                    [addToList]=true
+                    [service]=typeAheadDataService
+                    [noOfRecordsToReturn]=10
+                    [toggleAddNameModal]=true
+                    [toggleAddSameNameButton]=true
+                    [toggleAccentedCharacterIcon]=true
+                    [toggleSecondaryDisplay]=true
+                    [toggleTitle]=true
+                    [selectSingleRecord]=true
+                    (selectedTypeAheadRecord)="selectedTypeAheadRecord($event)"
+                    (noSearchResultsReturned)="noSearchResultsReturned($event)"
+                    (typeAheadReturnResults)="typeAheadReturnResults($event)">
+                  </c2c-type-ahead>
+                  <c2c-type-ahead-name-listing
+                    nonDuplicateRecordProperty='partyId'
+                    [entryList]="'many'"
+                    [listNameId]="'mainList'"
+                    [typeList]="'listGroup'"
+                    [selectFirstItem]=false
+                    errorMsgSelectedRemove="Add Current Name, Current Name selected was removed"
+                    errorMsgFirstItemRequired="Select Current Name">
+                  </c2c-type-ahead-name-listing>
+                </article>
+              </section>
+            </article>
+          </div>
+        </section>
+        <section class='col-2 col-sm-2'>
+          <!-- foreign characters search box -->
+          <c2c-modal></c2c-modal>
+        </section>
+      </div>
+      <!-- </form>  -->
+      <c2c-type-ahead-modal
+        [fullRecordRouterLink]="'/welcome'"
+        [fullRecordParams]="'addTalentForm'"
+        [typeAheadModalConfig]="typeAheadModalConfig">
+      </c2c-type-ahead-modal>
+  </main>

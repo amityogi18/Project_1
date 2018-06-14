@@ -142,7 +142,7 @@ export class TypeAheadModalComponent implements OnInit, AfterViewInit, OnDestroy
 
     this.typeAheadEventService.getCurrentItemSelectedt().subscribe(item => {
       this.aliasSelecteData = item;
-      if(this.aliasSelecteData){
+      if(this.aliasSelecteData) {
         this.disabledTypeAhead = true;
       } else {
         this.disabledTypeAhead = false;

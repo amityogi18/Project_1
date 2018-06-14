@@ -151,7 +151,9 @@ export class FormDatepickerComponent implements ControlValueAccessor, OnInit, Af
    * @param value The value to write.
    */
   public writeValue(value: any): void {
-    this.value = value;
+    if (value != null) {
+      this.value = new Date(value);
+    }
   }
 
   /**

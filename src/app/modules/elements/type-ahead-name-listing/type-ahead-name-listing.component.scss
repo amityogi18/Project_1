@@ -21,4 +21,11 @@
 .disabled-btn{
   pointer-events: none;
 }
+.list-inline-custom {
+  background-color: transparent !important;
+  border: none !important;
+  &:nth-of-type(even){
+    background-color: transparent !important;
+  }
+}
 

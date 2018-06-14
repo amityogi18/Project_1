@@ -105,28 +105,29 @@
                         <label>Current Name</label>
                     </div>
                     <div class="container">
-                    <c2c-type-ahead
-                      #modalTypeAhead
-                      parentModule="Talent"
-                      displayResult="displayName"
-                      columnToDisplay="typeAheadDisplayName"
-                      columnDataAddOns="primaryName"
-                      placeholderText="Type Last Name, First Name Middle Name, Suffix"
-                      title="Type Name to Search and Press Enter"
-                      [showTitle]="false"
-                      [showAddSameNameButton]="false"
-                      [addToList]="true"
-                      [hasNoResultsCallback]="true"
-                      filterType='NO_ALIAS'
-                      [service]="typeAheadDataService"
-                      [metaData]=metaData
-                      [noOfRecordsToReturn]="10"
-                      [showAccentedCharacterIcon]=true
-                      (noSearchResultsReturned)="noTypeAheadResultsFromMainForm($event)"
-                      (selectedTypeAheadRecord)="modalTypeAheadSelectedItem($event)"
-                      (clearFields)="clearTypeAhead()"
-                      [disabledTypeAhead]="disabledTypeAhead">
-                    </c2c-type-ahead>
+                        <c2c-type-ahead
+                        #modalTypeAhead
+                        parentModule="Talent"
+                        displayResult="displayName"
+                        primaryDisplayColumn=typeAheadDisplayName
+                        columnExtraData=primaryName
+                        secondaryDisplayColumn="primaryName"
+                        placeholderText="Type Last Name, First Name Middle Name, Suffix"
+                        title="Type Name to Search and Press Enter"
+                        [addToList]="true"
+                        [hasNoResultsCallback]="true"
+                        filterType='NO_ALIAS'
+                        [service]="typeAheadDataService"
+                        [metaData]=metaData
+                        [noOfRecordsToReturn]="10"
+                        [toggleAccentedCharacterIcon]=true
+                        [toggleSecondaryDisplay]=true
+                        [toggleTitle]=false
+                        (noSearchResultsReturned)="noTypeAheadResultsFromMainForm($event)"
+                        (selectedTypeAheadRecord)="modalTypeAheadSelectedItem($event)"
+                        (clearFields)="clearTypeAhead()"
+                        [disabledTypeAhead]="disabledTypeAhead">
+                      </c2c-type-ahead>
                 </div>
                 </div>
             </div>

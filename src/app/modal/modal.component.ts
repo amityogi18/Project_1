@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, ViewChild, TemplateRef, Renderer2, ViewChildren, OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild,
+  TemplateRef, Renderer2, ViewChildren,
+  OnDestroy, AfterViewInit, ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';

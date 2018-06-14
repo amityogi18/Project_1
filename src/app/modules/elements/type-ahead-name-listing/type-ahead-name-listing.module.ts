@@ -8,6 +8,7 @@ import { ButtonModule } from '../../elements/button/button.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TypeAheadNameListingComponent } from './type-ahead-name-listing.component';
+import { FormModule } from '../../../modules/form/form.module';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { TypeAheadNameListingComponent } from './type-ahead-name-listing.compone
     NgbModule.forRoot(),
     ReactiveFormsModule,
     ButtonModule,
-    FormsModule
+    FormModule
   ],
   declarations: [TypeAheadNameListingComponent],
   exports: [TypeAheadNameListingComponent]

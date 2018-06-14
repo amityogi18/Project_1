@@ -9,7 +9,7 @@ import { ModalEventService } from '../../../services/events/modal/modal-event.se
 import { TypeAheadModalComponent } from '../../../forms/type-ahead/type-ahead-modal/type-ahead-modal.component';
 import { TypeAheadModule } from '../../../modules/elements/type-ahead/type-ahead.module';
 
-import { SsnValidatorDirective } from '../../../directives/ssn-validator/ssn-validator.directive';
+//import { SsnValidatorDirective } from '../../../directives/ssn-validator/ssn-validator.directive';
 import { EnterKeyClickDirective } from '../../../directives/keyboard-events/enter-key-click.directive';
 import { ToasterService } from '../../../services/toaster/toaster.service';
 import { AddAliasService } from '../../../services/http/type-ahead/aka/add-alias.service';
@@ -29,7 +29,7 @@ import { TypeAheadPersistService } from '../../../services/persist/type-ahead/ty
   declarations: [
     TypeAheadModalComponent,
     TypeAheadDisplayComponent,
-    SsnValidatorDirective,
+    //SsnValidatorDirective,
     EnterKeyClickDirective
   ],
   exports: [TypeAheadModalComponent, TypeAheadDisplayComponent]

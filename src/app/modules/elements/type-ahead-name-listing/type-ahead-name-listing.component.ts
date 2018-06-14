@@ -82,6 +82,8 @@ export class TypeAheadNameListingComponent implements OnDestroy {
   @Input() public errorMsgSelectItem: string = '';
   @Input() public showMsgForSelectingItem: boolean = false;
   @Input() public allowAKA: boolean = false;
+  @Input() public listFor: string = 'typeAheadList';
+  @Input() public entryValue: string = '';
 
   private disabledBtn: boolean = false;
   private selectNext = false;
@@ -143,7 +145,7 @@ export class TypeAheadNameListingComponent implements OnDestroy {
         index = (index === -1 && element[this.nonDuplicateRecordProperty] === rec[this.nonDuplicateRecordProperty]) ? key : index;
       });
       this.errorMsg = 'The selected record already exists in the list.';
-    } else{
+    } else if(this.listFor === 'typeAheadList' && this.allowAKA){
       for(const item of this.typeAheadServiceData){
         if(item[this.nonDuplicateRecordProperty] === rec[this.nonDuplicateRecordProperty]) {
           console.log(item[this.nonDuplicateRecordProperty] + ' ' + rec[this.nonDuplicateRecordProperty]);
@@ -174,10 +176,10 @@ export class TypeAheadNameListingComponent implements OnDestroy {
     this.typeAheadServiceData.splice(this.indexOfGivenRecordInTheList(item),1);
     this.typeAheadEventService.removeItemList(item);
 
-    if(this.typeList === 'listInline' && this.typeAheadServiceData.length === 0){
-      this.toasterService.info(this.errorMsgItemSelectedRemoved, 'Current Item is required');
+    if(this.typeList === 'listInline' && this.typeAheadServiceData.length === 0 && this.listFor === 'typeAheadList'){
       this.itemSelected = undefined;
       this.typeAheadEventService.currentItemSelected(this.itemSelected);
+      this.toasterService.info(this.errorMsgItemSelectedRemoved, 'Current Item is required');
     } else if(this.typeList === 'listInline' && this.typeAheadServiceData.length > 0) {
       this.typeAheadEventService.currentItemSelected(this.typeAheadServiceData[0]);
     }

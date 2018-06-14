@@ -1,4 +1,4 @@
-<div *ngIf='typeAheadServiceData && typeAheadServiceData.length && typeList == "listGroup"' class="col-md-12" >
+<div *ngIf='typeAheadServiceData && typeAheadServiceData.length && typeList == "listGroup"  &&  listFor === "typeAheadList"' class="col-md-12" >
   <h6>List: </h6>
   <div class='list-container'>
     <ul class="list-group list-group-flush" >
@@ -15,10 +15,14 @@
     </ul>
   </div>
 </div>
-<div class="col-md-12 mt-1">
-  <ul class="list-inline" *ngIf="typeList == 'listInline'">
+<div *ngIf="typeAheadServiceData && typeAheadServiceData.length && typeList == 'listInline' &&  listFor === 'typeAheadList'" class="col-md-12 mt-1">
+  <ul class="list-inline">
     <li *ngFor="let item of typeAheadServiceData; let isFirst = first;" class="list-inline-item mb-2 mr-2 d-inline-flex align-items-md-center ">
-      <c2c-form-radio-button [singleButton]=true (click)="currentItemSelected(item)" [isChecked]="(isFirst && selectFirstItem) || item.selectedItemInList" class="mr-1 align-items-md-center" *ngIf="radioButton"></c2c-form-radio-button>
+      <c2c-form-radio-button [singleButton]=true
+                              (click)="currentItemSelected(item)"
+                              [isChecked]="(isFirst && selectFirstItem) || item.selectedItemInList"
+                              class="mr-1 align-items-md-center"
+                              *ngIf="radioButton"></c2c-form-radio-button>
       <div class=" name-bg d-inline-flex align-items-md-center m-1 px-3 py-1">
         <span *ngIf= 'item.suffix && !item.primaryName' class="mr-2">{{item.firstName}} {{item.middleName}} {{item.entityName}}, {{item.suffix}} </span>
         <span *ngIf= '!item.suffix && !item.primaryName' class="mr-2 name-bg">{{item.firstName}} {{item.middleName}} {{item.entityName}} {{item.suffix}} </span>
@@ -27,5 +31,13 @@
         <c2c-minus-button *ngIf="removeButton" (click)='deleteRecordFromList(item)' [ngClass]="{'disabled-btns': item.selectedItemInList}" ></c2c-minus-button >
       </div>
     </li>
+  </ul>
+</div>
+<div *ngIf="typeAheadServiceData && typeAheadServiceData.length && typeList == 'listInline' && listFor === 'customList'" class="col-md-12 mt-1">
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let item of typeAheadServiceData" class="list-group-item pt-2 list-group-item d-flex justify-content-between align-items-center list-inline-custom">{{item[entryValue]}}
+      <c2c-minus-button  (click)='deleteRecordFromList(item)' ></c2c-minus-button >
+    </li>
+
   </ul>
 </div>

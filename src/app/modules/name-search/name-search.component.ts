@@ -1,9 +1,5 @@
-import { Component, OnInit, AfterViewInit} from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent } from '../../modal/modal.component';
-import { GenericModalComponent } from '../elements/generic-modal/generic-modal.component';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef} from '@angular/core';
 import { ModalEventService } from '../../services/events/modal/modal-event.service';
-import { UrlResolverService } from '../../services/non-http-data/url-resolver.service';
 import { TypeAheadService } from '../../services/http/type-ahead/type-ahead.service';
 
 @Component({
@@ -15,11 +11,13 @@ import { TypeAheadService } from '../../services/http/type-ahead/type-ahead.serv
 
 export class NameSearchComponent implements OnInit {
 
-  public typeAheadDataService: any;
+  @ViewChild('typeAhead') typeAhead: ElementRef;
 
-  constructor(private modalEventService: ModalEventService,
-              private urlResolverService: UrlResolverService,
-              private typeAheadService: TypeAheadService ) {
+  public typeAheadDataService: any;
+  public title: string = 'Proof of Concept - Name Type-Ahead';
+  public displayString: string;
+
+  constructor(private typeAheadService: TypeAheadService ) {
   }
 
   public metaData: object = {
@@ -29,8 +27,6 @@ export class NameSearchComponent implements OnInit {
     default: ['occupation', 'ssnEndChars']
 
   }
-
-  public title: string = 'Proof of Concept - Name Type-Ahead';
 
   public typeAheadModalConfig: any = {
     title: 'Add New Talent name',
@@ -43,9 +39,26 @@ export class NameSearchComponent implements OnInit {
   ngOnInit() {
     // service needed for typeAhead data
    this.typeAheadDataService = this.typeAheadService;
+
   }
 
-  public selectedTypeAheadRecord(evt: Event) {
+  public returnedResults(evt: Array<any>) {
+    console.log('returned from params model', evt);
+  }
+
+  public noSearchResultsReturned(evt?: Event): void {
+    console.log('no results');
+  }
+
+  public selectedTypeAheadRecord(evt: Event): void {
     console.log('Name Search - Selected TypeAhead Record');
+  }
+
+  public typeAheadReturnResults(evt: Array<any>): void {
+    evt.forEach(element => {
+      if (element.primaryName) {
+        this.displayString = '(alias for ' + element.primaryName + ')';
+      }
+    });
   }
 }

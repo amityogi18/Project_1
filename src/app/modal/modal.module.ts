@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import { ModalEventService } from '../services/events/modal/modal-event.service';
 import { TypeAheadEventService } from '../services/events/type-ahead/type-ahead-event.service';
-import { CommonSharedModule } from '../../../public_api';
+import { CommonSharedModule } from '../modules/common-shared/common-shared.module';
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { CommonSharedModule } from '../../../public_api';
   exports: [ModalComponent]
 })
 export class ModalModule {
-  static forRoot(): ModuleWithProviders{
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: ModalModule,
       providers: [TypeAheadEventService,

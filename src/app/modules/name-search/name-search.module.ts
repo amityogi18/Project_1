@@ -18,7 +18,7 @@ import { NgbModalStack } from '@ng-bootstrap/ng-bootstrap/modal/modal-stack';
 import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
 
 import { AutofocusDirective } from '../../directives/focus/auto-focus.directive';
-import { SsnValidatorDirective } from '../../directives/ssn-validator/ssn-validator.directive';
+//import { SsnValidatorDirective } from '../../directives/ssn-validator/ssn-validator.directive';
 import { EnterKeyClickDirective } from '../../directives/keyboard-events/enter-key-click.directive';
 import { ControlSHotkeyDirective } from '../../directives/keyboard-events/ctrl-s.directive';
 
@@ -42,7 +42,7 @@ import { FormModule } from '../form/form.module';
   declarations: [
     AutofocusDirective,
     EnterKeyClickDirective,
-    SsnValidatorDirective,
+    //SsnValidatorDirective,
     NameSearchComponent,
     TypeAheadDetailsComponent,
     TypeAheadFiltersFormComponent,

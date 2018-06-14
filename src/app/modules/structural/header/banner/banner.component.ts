@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 import { GenericModalComponent } from '../../../elements/generic-modal/generic-modal.component';
 /**
  * The BannerComponent
@@ -22,6 +23,7 @@ export class BannerComponent {
 
   @ViewChild('logoutModal') public logoutModal: GenericModalComponent;
 
+  private location: Location;
   /**
    * Constructor for the BannerComponent
    */
@@ -33,7 +35,7 @@ export class BannerComponent {
   }
 
   public processLogout() {
-    console.log('logout Processed');
     this.logoutModal.close();
+    window.location.href = 'http://dev.concept2alize.com/tal/qa1/talent/saml/logout';
   }
 }

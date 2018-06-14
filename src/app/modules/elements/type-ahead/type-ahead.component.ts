@@ -8,24 +8,21 @@ import {
   Renderer2,
   ViewChild,
   ElementRef,
-  HostListener,
-  TemplateRef,
   QueryList,
-  ContentChild
+  forwardRef
 } from '@angular/core';
 import {
-  NgForm,
   FormGroup,
   FormControl,
-  AbstractControl
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR
 } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Subscription} from 'rxjs/Subscription';
-import { Subscriber} from 'rxjs/Subscriber';
 import { Subject } from 'rxjs/Subject';
-import { last } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
@@ -34,12 +31,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/add/operator/filter';
-
 import { NgbTypeaheadConfig, NgbTypeahead, NgbHighlight } from '@ng-bootstrap/ng-bootstrap';
-
-import { TypeAheadService } from '../../../services/http/type-ahead/type-ahead.service';
 import { TypeAheadModel } from '../../../models/type-ahead/type-ahead.model';
-import { SearchMethodologies } from '../../../enums/queryParameters/search-methodologies.enum';
 import { TypeAheadEventService } from '../../../services/events/type-ahead/type-ahead-event.service';
 import { TypeAheadDisplayModel } from '../../../models/type-ahead/type-ahead-display';
 import { AccentedLetters } from '../../../enums/characters/accented-letters.enum';
@@ -58,25 +51,27 @@ const _title: string = 'Default Title';
   selector: 'c2c-type-ahead',
   templateUrl: './type-ahead.component.html',
   styleUrls: ['./type-ahead.component.scss'],
-  providers: [TypeAheadService, NgbTypeaheadConfig]
+  providers: [NgbTypeaheadConfig,
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TypeAheadComponent),
+      multi: true
+    }]
 })
 
-export class TypeAheadComponent implements OnInit {
+export class TypeAheadComponent implements OnInit, ControlValueAccessor {
 
   private _accentedCharacter: string;
-  private _addToList: boolean = true;
+  //private _addToList: boolean = true;
   private _customModal: GenericModalComponent;
   private _listName: string;
   private _filterType: string;
-  private _firstResult: any;
-  private _hasNoResultsCallback: boolean;
-  private _searchTerm: string;
-  private _showAddAsNewBtn: boolean;
-  private _showTitle: boolean = true;
-  private _disabledTypeAhead: boolean = false;
-  private _htmlTitle: boolean = false;
-
-  @Input() public columnToDisplay: string;
+  //private _hasNoResultsCallback: boolean;
+  //private _showTitle: boolean = true;
+  //private _disabledTypeAhead: boolean = false;
+  //private _htmlTitle: boolean = false;
+  public _value: any;
+  private searchTerm: string;
   @Input() public columnDataAddOns: string;
   @Input() public displayColumns: Array<string>;
   @Input() public typeAheadModelParams: any;
@@ -84,50 +79,64 @@ export class TypeAheadComponent implements OnInit {
   @Input() public noOfRecordsToReturn: string = '10';
   @Input() public parentModule: string;
   @Input() public placeholderText: string = _placeHolderText;
-  @Input() public title: string = _title;
+  @Input() public primaryDisplayColumn: string;
+  @Input() public secondaryDisplayColumn: string;
+  @Input() public secondaryColumnString: string;
+  @Input() public selectSingleRecord: boolean;
   @Input() public service: any;
-  @Input() public showAccentedCharacterIcon: boolean = false;
-  @Input() public showAddNameModal: boolean;
-  @Input() public showAddSameNameButton: boolean = false;
-  @Input() public showAlias: boolean = false;
-  @Input() public showCustomModal: boolean = false;
+  @Input() public title: string = _title;
+  @Input() public toggleAccentedCharacterIcon: boolean = false;
+  @Input() public toggleAddNameModal: boolean;
+  @Input() public toggleAddSameNameButton: boolean = false;
+  @Input() public toggleClearButton: boolean = false;
+  @Input() public toggleCustomModal: boolean = false;
+  @Input() public toggleSecondaryDisplay: boolean = false;
+  @Input() public toggleTitle: boolean = false;
+  @Input() public addToList: boolean;
+  @Input() public customModal: GenericModalComponent;
+  @Input() public filterType: string;
+  @Input() public showTitle: boolean;
+  @Input() public hasNoResultsCallback: boolean;
+  @Input() public disabledTypeAhead: boolean;
+  @Input() public htmlTitle: boolean;
 
-  @Input()
-  set addToList(val: boolean) { this._addToList = val; }
-  get addToList(): boolean { return this._addToList; }
+  // @Input()
+  // set addToList(val: boolean) { this._addToList = val; }
+  // get addToList(): boolean { return this._addToList; }
 
-  @Input()
-  set customModal(val: GenericModalComponent) { this._customModal = val; }
-  get customModal(): GenericModalComponent { return this._customModal; }
+  // @Input()
+  // set customModal(val: GenericModalComponent) { this._customModal = val; }
+  // get customModal(): GenericModalComponent { return this._customModal; }
 
-  @Input()
-  set filterType(type: string) { this._filterType = type; }
-  get filterType(): string { return this._filterType; }
+  // @Input()
+  // set filterType(type: string) { this._filterType = type; }
+  // get filterType(): string { return this._filterType; }
 
   @Input()
   set listName(val: string) { this._listName = removeWhitespace(val); }
   get listName(): string { return this._listName; }
-  private searchTerm: string;
 
-  @Input()
-  set showTitle(val: boolean) { this._showTitle = val; }
-  get showTitle(): boolean { return this._showTitle; }
 
-  @Input()
-  set hasNoResultsCallback(val: boolean) { this._hasNoResultsCallback = val; }
-  get hasNoResultsCallback(): boolean { return this._hasNoResultsCallback; }
+  // @Input()
+  // set showTitle(val: boolean) { this._showTitle = val; }
+  // get showTitle(): boolean { return this._showTitle; }
 
-  @Input()
-  set disabledTypeAhead(val: boolean) { this._disabledTypeAhead = val; }
-  get disabledTypeAhead(): boolean { return this._disabledTypeAhead; }
+  // @Input()
+  // set hasNoResultsCallback(val: boolean) { this._hasNoResultsCallback = val; }
+  // get hasNoResultsCallback(): boolean { return this._hasNoResultsCallback; }
 
-  @Input()
-  set htmlTitle(val: boolean) { this._htmlTitle = val; }
-  get htmlTitle(): boolean { return this._htmlTitle; }
+  // @Input()
+  // set disabledTypeAhead(val: boolean) { this._disabledTypeAhead = val; }
+  // get disabledTypeAhead(): boolean { return this._disabledTypeAhead; }
+
+  // @Input()
+  // set htmlTitle(val: boolean) { this._htmlTitle = val; }
+  // get htmlTitle(): boolean { return this._htmlTitle; }
 
   @Output() public accentedCharacterReturned: EventEmitter<any> = new EventEmitter();
   @Output() public noSearchResultsReturned: EventEmitter<TypeAheadDisplayModel> = new EventEmitter();
   @Output() public selectedTypeAheadRecord: EventEmitter<TypeAheadModel> = new EventEmitter();
+  @Output() public typeAheadReturnResults: EventEmitter<any> = new EventEmitter();
   @Output() public clearFields: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('typeAheadField') public typeAheadField: ElementRef;
@@ -141,6 +150,18 @@ export class TypeAheadComponent implements OnInit {
     this._accentedCharacter = val;
   }
 
+  /** Getter for the value property */
+  public get value(): any {
+    return this._value;
+  }
+
+  /** Setter for the value property */
+  public set value(val: any) {
+    this._value = val;
+    this.onChange(val);
+    this.onTouched();
+  }
+
   public displayResultsToShow: any;
   public enableFirstSFocus: boolean = true;
   private hasData: boolean = false;
@@ -148,16 +169,12 @@ export class TypeAheadComponent implements OnInit {
   private typeAheadResultsReturned: boolean;
   public searching: boolean = false;
   public searchFailed: boolean = false;
-
   private debounceTime: number = 0;
-
   public typeAheadFocusSubject: Subject<string> = new Subject<string>();
-
   private accentedCharacterSubscription: Subscription;
   private filterSubscription: Subscription;
   public typeAheadForm: FormGroup;
   private typeAheadSearchData: Array<any>; // returned data from service, converted observable object to array
-
   private userRole: string = '';
   private metaDataArray: Array<string> = [];
   private buttons: QueryList<ElementRef>;
@@ -168,9 +185,7 @@ export class TypeAheadComponent implements OnInit {
 
   private hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
 
-  private keydownSubject: Subject<string> = new Subject<string>();
-
-  constructor(private typeAheadService: TypeAheadService,
+  constructor(
     private typeAheadEventService: TypeAheadEventService,
     private typeAheadConfig: NgbTypeaheadConfig,
     private renderer: Renderer2,
@@ -232,45 +247,49 @@ export class TypeAheadComponent implements OnInit {
 
     this.typeAheadField.nativeElement.focus();
 
-    if(this.disabledTypeAhead){
+    if (this.disabledTypeAhead) {
       this.typeAheadForm.controls.typeAheadField.disable();
     }
-    //this.highlightHoverFix();
-    this.onChanges();
+
+    this.onChange();
   }
 
-  // private highlightHoverFix() {
-  //   document.addEventListener('keydown', ev => {
+ /** Fired when any changes to the model are detected */
+ public onChange: any = () => {
+  const typeAheadField: AbstractControl = this.typeAheadForm.controls.typeAheadField;
 
-  //     if (ev.keyCode === CharKeyCodes.DOWN_ARROW && this.buttons.length) {
-  //       if (this.buttonsIdx === 0 && !this.buttonsIdxCheck) {
-  //         this.buttonsIdxCheck = true;
-  //         this.buttons[this.buttonsIdx].classList.remove('hover');
-  //       } else {
-  //         this.buttons[this.buttonsIdx].classList.remove('hover');
-  //         this.buttonsIdx++;
-  //         this.buttonsIdx = this.buttonsIdx > this.buttons.length-1 ? this.buttons.length-1 : this.buttonsIdx;
-  //       }
-  //     }
-  //     if (ev.keyCode === CharKeyCodes.UP_ARROW && this.buttons.length) {
-  //       this.buttonsIdx--;
-  //       this.buttonsIdx = this.buttonsIdx < 0 ? 0 : this.buttonsIdx;
-  //       if (this.buttonsIdx === 1 && this.buttonsIdxCheck) {
-  //         this.buttonsIdxCheck = false;
-  //       }
-  //     }
-  //     if (ev.keyCode === CharKeyCodes.ENTER) {
-  //       this.buttonsIdx = 0;
-  //     }
-  //   });
-  // }
+    // listen for typeAhead changes
+    typeAheadField.valueChanges.subscribe(val => {
+
+      this.checkForAccentedLetters(val);
+      this.hasData = typeAheadField.value !== '';
+
+    });
+  };
+
+ /** Fired when the component is blurred. TODO: This currently doesn't work - need to figure out why and fix it */
+ public onTouched: any = () => { };
+
+  writeValue(obj: any): void {
+    this.value = obj;
+  }
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    this.disabledTypeAhead = isDisabled;
+  }
 
   public displayTypeAheadResults<T>(results: T): T {
     // set the object of returned data
     this.displayResultsToShow = results;
 
     // return the value to display in typeAhead results
-    return this.displayResultsToShow[this.columnToDisplay];
+
+    return this.displayResultsToShow[this.primaryDisplayColumn];
   }
 
   public onKeyUp(evt: KeyboardEvent): void {
@@ -295,11 +314,6 @@ export class TypeAheadComponent implements OnInit {
           this.displayAddNameModal(this.typeAheadField.nativeElement.value);
         }
      }
-
-    //  if (evt.keyCode === CharKeyCodes.ENTER && this.typeAheadField.nativeElement.value.length) {
-    //   evt.preventDefault();
-    //   this.displayAddNameModal(this.typeAheadField.nativeElement.value);
-    // }
   };
 
   public onMouseUp(evt: MouseEvent): void {
@@ -315,7 +329,7 @@ export class TypeAheadComponent implements OnInit {
   // open addName for searched text.
   public displayAddNameModal(seachedValue: string): void {
 
-    if (!this.showAddNameModal && this.showCustomModal) {
+    if (!this.toggleAddNameModal && this.toggleCustomModal) {
       this._customModal.open();
       return;
     }
@@ -339,25 +353,27 @@ export class TypeAheadComponent implements OnInit {
    * NOTE: May need to look at updating this funtion for highlight use
    */
   private selectedItem(evt: Event): void {
+
     evt.preventDefault();
-
     this.clearTypeAheadField();
-
     this.hasData = true;
+    this.value = evt['item'];
 
-    // return object from typeahead data that matches column value
-    // const selectedItem: TypeAheadModel = this.typeAheadSearchData.find(x => {
-    //   return x.partyId === evt['item'].partyId;
-    // });
-    const selectedItem: any = evt['item'];
+    // selecting a single record, update typeAhead field with selected value
+    if (this.selectSingleRecord) {
+        this.typeAheadForm.get('typeAheadField').setValue(this.value);
+      return;
+    }
 
     try {
       // emit service event that will be listened by other components
-      this.selectedTypeAheadRecord.emit(selectedItem);
+      this.selectedTypeAheadRecord.emit(this.value);
+
       if (!this.hasNoResultsCallback) {
         this.typeAheadEventService.listNameToLook(this.listName);
       }
-      this.typeAheadEventService.typeAheadChangeEvent(selectedItem);
+
+      this.typeAheadEventService.typeAheadChangeEvent(this.value);
     } catch (err) {
       throw err;
     } finally {
@@ -378,22 +394,11 @@ export class TypeAheadComponent implements OnInit {
       }
       this.typeAheadSearchData = resArr;
       this.typeAheadResultsReturned = true;
+      this.typeAheadReturnResults.emit(resArr);
       return resArr;
     }
   };
 
-  // listen for form changes
-  private onChanges(): void {
-    const typeAheadField: AbstractControl = this.typeAheadForm.controls.typeAheadField;
-
-    // listen for typeAhead changes
-    typeAheadField.valueChanges.subscribe(val => {
-
-      this.checkForAccentedLetters(val);
-      this.hasData = typeAheadField.value !== '';
-
-    });
-  };
 
   // watch for letters that have accented characters
   private checkForAccentedLetters(val: string): void {
@@ -472,30 +477,22 @@ export class TypeAheadComponent implements OnInit {
     this.metaDataArray = [];
     switch (this.userRole) {
       case UserRole.BUSINESS_CREATIVE: {
-        // this.checkNullEmptyMetaData(user['occupation'], false);
-        // this.checkNullEmptyMetaData(user['agency'], false);
         this.checkNullEmptyMetaData(user[this.metaData['BUSINESS_CREATIVE'][0]], false);
         this.checkNullEmptyMetaData(user[this.metaData['BUSINESS_CREATIVE'][1]], false);
         break;
       }
       case UserRole.PRODUCTION: {
-        // this.checkNullEmptyMetaData(user['occupation'], false);
-        // this.checkNullEmptyMetaData(user['ssnEndChars'], true);
         this.checkNullEmptyMetaData(user[this.metaData['PRODUCTION'][0]], false);
         this.checkNullEmptyMetaData(user[this.metaData['PRODUCTION'][1]], true);
         break;
       }
       case UserRole.CASTING: {
-        // this.checkNullEmptyMetaData(user['agency'], false);
-        // this.checkNullEmptyMetaData(user['ssnEndChars'], true);trailer
         this.checkNullEmptyMetaData(user[this.metaData['CASTING'][0]], false);
         this.checkNullEmptyMetaData(user[this.metaData['CASTING'][1]], true);
 
         break;
       }
       default: {
-        // this.checkNullEmptyMetaData(user['occupation'], false);
-        // this.checkNullEmptyMetaData(user['ssnEndChars'], true);
         this.checkNullEmptyMetaData(user[this.metaData['default'][0]], false);
         this.checkNullEmptyMetaData(user[this.metaData['default'][1]], true);
         break;
