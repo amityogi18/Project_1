@@ -1,0 +1,22 @@
+@import '../../../../assets/sass/variables';
+
+.ng-invalid {
+    &.ng-touched{
+        border-color: $required-border;
+    }
+}
+
+//can use this to highlight the borders of required fields
+.ng-invalid {
+    border-color: $required-border;
+}
+
+.close-x {
+    right:100px;
+    position: absolute;
+}
+
+.alias-checkbox{
+    text-align: center;
+    margin-bottom: 10px;
+}

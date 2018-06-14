@@ -1,0 +1,64 @@
+/*
+ * See the C2C Style Guide for reference:
+ * http://ec2-54-193-58-166.us-west-1.compute.amazonaws.com/
+ *
+ */
+
+// C2C Colors
+$bluePearl: #E5EBF6 !default;
+$blueHighlight: #F5F7FC !default;
+$blueIce: #D4DDED !default;
+$blueWind1: #CAD6EC !default;
+$blueWind2: #E3E9F5 !default;
+$bahamaBlue: #003CA6 !default;
+$blueMoon: #CCD8ED !default;
+$bluePetal1: #ACB8CE !default;
+$bluePetal2: #CAD6EC !default;
+$gunMetal: #636363 !default;
+$concrete: #B7B7B7 !default;
+$charcoal: #363636 !default;
+$dargenta: #C50577 !default;
+$smog: #A5A5A5 !default;
+$roarange: #FB2E12 !default;
+$cornflower: #0064E0 !default;
+$grass: #008100 !default;
+
+// Other Colors
+// TODO: Do we even need these?
+$white:  #fff !default;
+$black:  #000 !default;
+$red:    #d9534f !default;
+$orange: #f0ad4e !default;
+$yellow: #ffd500 !default;
+$green:  #5cb85c !default;
+$blue:   #0275d8 !default;
+$teal:   #5bc0de !default;
+$pink:   #ff5b77 !default;
+$purple: #613d7c !default;
+$required-border-red: #f7c6c6 !default;
+$globe-icon-color: #9DC3E6 !default;
+// Create grayscale
+$gray-dark:                 #292b2c !default;
+$gray:                      #464a4c !default;
+$gray-light:                #636c72 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+// Reassign color vars to semantic color scheme
+$brand-primary:             $blue !default;
+$brand-success:             $green !default;
+$brand-info:                $teal !default;
+$brand-warning:             $orange !default;
+$brand-danger:              $red !default;
+$brand-inverse:             $gray-dark !default;
+
+// Shadows
+$box-shadow:                rgba(0, 0, 0, 0.33) 1px 2px 7px 0px;
+
+// Errors
+$required-border:           $required-border-red !default;
+
+// Dimensions
+$footer-height: 60px;
+$header-height: 60px;
+$sidebar-width: 204px;

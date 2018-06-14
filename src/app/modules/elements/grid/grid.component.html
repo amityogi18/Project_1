@@ -1,0 +1,63 @@
+<div class="c2c-grid-header">
+  <div class="c2c-grid-header-title-div">
+    <h1 class="c2c-grid-header-title" *ngIf="pageOptions.showTitle">{{pageOptions.title}}</h1>
+  </div>
+  <div id="c2c-grid-icon-container" class="c2c-grid-header-buttons-div">
+    <span><c2c-refresh-button id="c2c-grid-refresh-button" *ngIf="pageOptions.showRefreshIcon" title="Refresh"></c2c-refresh-button></span>
+    <span><c2c-reset-button id="c2c-grid-reset-button" *ngIf="pageOptions.showResetIcon" title="Reset"></c2c-reset-button></span>
+    <span><c2c-pdf-button id="c2c-grid-pdf-button" *ngIf="pageOptions.showPDFIcon" title="PDF"></c2c-pdf-button></span>
+    <span><c2c-save-button id="c2c-grid-save-button" [saveButtonOptions]="saveButtonOptions" *ngIf="pageOptions.showSaveIcon" title="Save As"></c2c-save-button></span>
+    <span><c2c-add-button id="c2c-grid-add-button" *ngIf="pageOptions.showAddIcon" [addButtonOptions]="addButtonOptions" title="Add Record"></c2c-add-button></span>
+  </div>
+</div>
+
+<ag-grid-angular
+    #agGrid
+    id="c2c-ag-grid"
+    class="ag-theme-fresh"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [pagination]="true"
+    [paginationPageSize]="paginationPageSize"
+    [enableSorting]="true"
+    [enableFilter]="true"
+    [floatingFilter]="true"
+    [animateRows]="true"
+    [rowHeight]="30"
+    [cacheQuickFilter]="true"
+    [enableColResize]="true"
+    [suppressCellSelection]="true"
+    [stopEditingWhenGridLosesFocus]="true"
+    [singleClickEdit]="true"
+    [frameworkComponents]="frameworkComponents"
+    [suppressPaginationPanel]="true"
+    [overlayNoRowsTemplate]="noDataOverlay"
+    (gridReady)="onGridReady($event)"
+    (viewportChanged)="onPaginationChanged()"
+    (gridSizeChanged)="onGridSizeChanged()"
+    (sortChanged)="onSortChanged()"
+    ></ag-grid-angular>
+
+    <!-- pagination ribbon: -->
+    <div class="ag-paging-panel ag-font-style c2c-pagination-ribbon">
+      <span class="ag-paging-page-summary-panel">
+        <button type="button" id="pagination-first-page-btn" class="ag-paging-button btn btn-default" ref="btFirst" (click)="onBtFirst()" [disabled]="disableNavigationBack" [ngClass]="{'button-disabled':disableNavigationBack}" title="Page to first"><i class="fa fa-step-backward"></i></button>
+        <button type="button" id="pagination-previous-page-btn" class="ag-paging-button btn btn-default" ref="btPrevious" (click)="onBtPrevious()" [disabled]="disableNavigationBack" [ngClass]="{'button-disabled':disableNavigationBack}" title="Page back"><i class="fa fa-caret-left c2c-prev-page-arrow"></i></button>
+        <input #pageNumber id="pagination-number-input-box" type='number' value="{{lbCurrentPage}}" min="1" max="{{lbTotalPages}}" (change)="onPageNumberChanged()" title="Selected page"><span ref="lbCurrent"></span> / <span class="value" title="of">{{lbTotalPages}}</span>
+        <button type="button" id="pagination-next-page-btn" class="ag-paging-button btn btn-default" ref="btNext" (click)="onBtNext()" [disabled]="disableNavigationForward" [ngClass]="{'button-disabled':disableNavigationForward}" title="Page forward"><i class="fa fa-caret-right c2c-next-page-arrow"></i></button>
+        <button type="button" id="pagination-last-page-btn" class="ag-paging-button btn btn-default" ref="btLast" (click)="onBtLast()" [disabled]="disableNavigationForward" [ngClass]="{'button-disabled':disableNavigationForward}" title="Page to last"><i class="fa fa-step-forward"></i></button>
+      </span>
+      <span>
+        <select (change)="onPageSizeChanged()" id="pagination-page-size" #pageSize>
+          <option value="25" selected="">25</option>
+          <option value="50">50</option>
+          <option value="75">75</option>
+          <option value="100">100</option>
+        </select>
+        <span class="per-page-label"> items per page</span>
+      </span>
+      <span ref="eSummaryPanel" id="pagination-page-summary-details" class="ag-paging-row-summary-panel" style="float: right">
+        <span>{{lbFirstRowOnPage}}</span> - <span>{{lbLastRowOnPage}}</span> of <span>{{lbRecordCount}}</span><span> items</span>
+      </span>
+    </div>
+    <!-- end pagination ribbon -->

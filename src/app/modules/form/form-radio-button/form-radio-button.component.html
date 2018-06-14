@@ -1,0 +1,28 @@
+<div *ngIf="!singleButton">
+  <div id="c2c-form-radio" class="radio" *ngFor="let option of radioOptions.choices">
+    <label>
+      <input
+      id="c2c-radio-button-multiple-option"
+      type="radio"
+      name="optradio"
+      title="{{option.title}}"
+      [value]="option.title"
+      [disabled]="option.disabled"
+      [ngClass]="{'disabled-radio-label': option.disabled}"
+      [checked]="option.checkedByDefault"
+      [tabindex]="tabIndex" >
+      <span class="c2c-radio-label" *ngIf="option.showTitle" [ngClass]="{'disabled-radio-label': option.disabled}">{{option.title}}</span>
+    </label>
+  </div>
+</div>
+
+<span *ngIf="singleButton">
+  <input
+  id="radioB"
+  type="radio"
+  name="optRadio"
+  (change)="emitChoiceChangedEvent()"
+  [value]="singleButton"
+  [tabindex]="tabIndex"
+  [checked]="isChecked">
+</span>

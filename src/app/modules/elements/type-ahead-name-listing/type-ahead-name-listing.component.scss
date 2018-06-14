@@ -1,0 +1,24 @@
+@import "../../../../assets/sass/variables";
+.list_style_none{
+        list-style-type: none;
+    }
+.list-container{
+    max-height: 300px;
+    width:100%;
+    overflow-y: scroll;
+    display: block;
+    position: relative;
+    border: solid 1px rgba(136,136,136,.25);
+}
+
+.list-group-item:nth-of-type(even){
+    background-color: rgba(150, 150, 150, .10) !important;
+}
+.name-bg{
+  background-color: $blueHighlight;
+  font-weight: bold;
+}
+.disabled-btn{
+  pointer-events: none;
+}
+

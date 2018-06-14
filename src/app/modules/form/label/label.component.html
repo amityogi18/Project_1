@@ -1,0 +1,8 @@
+<div class="c2c-label-span-columns" *ngIf="spanColumns">
+  <span class="c2c-label-text">{{ value | uppercase }}</span>
+  <span class="c2c-label-text alt-text" *ngIf="altText != null">{{ altText }}</span>
+</div>
+<div class="c2c-label" *ngIf="!spanColumns">
+  <span class="c2c-label-text">{{ value | uppercase }}</span>
+  <span class="c2c-label-text alt-text" *ngIf="altText != null">{{ altText }}</span>
+</div>

@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row no-gutters c2c-banner-row">
+    <div class="col-md-2">
+      <img src="assets/images/c2c-banner-logo.png" alt="Concept2Camera">
+    </div>
+    <div class="col-md-10">
+      <div class="row no-gutters">
+        <div class="col-md-8 c2c-user-management-section">
+          <div class="c2c-user-management-icons">
+            <div class="c2c-icons">
+              <div id="c2c-user-notification-bell" class="c2c-main-sprite c2c-alerts-icon" title="Alerts" tabindex="-1"></div>
+              <div id="c2c-user-notification-message" class="c2c-main-sprite c2c-messages-icon" title="Messages" tabindex="-1"></div>
+            </div>
+          </div>
+
+          <div class="c2c-user-dropdown">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" tabindex="-1">
+                Gelena Weissman
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" tabindex="-1">
+                <a id="c2c-user-dropdown-item-my-account" class="dropdown-item" href="#">My Account</a>
+                <a id="c2c-user-dropdown-item-user-admin" class="dropdown-item" routerLink="/useradmin">User Admin</a>
+                <a id="c2c-user-dropdown-item-logout" class="dropdown-item" href="#" (click)="openModal($event)">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 c2c-search-box-section">
+          <!-- <c2c-type-ahead class="banner-type-ahead"></c2c-type-ahead> -->
+          <input id="c2c-search-all-modules-input" type="text" class="c2c-search-box" tabindex="-1">
+          <div><span class="c2c-main-sprite c2c-search-glass"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<c2c-generic-modal
+  #logoutModal
+  [showHeader]=true
+  [showFooter]=true
+  size='sm'
+  title="Confirm Logout">
+    <p>Are you sure you wish to logout?</p>
+    <button type="button" class='btn btn-primary' (click)='processLogout()'>Yes</button>
+</c2c-generic-modal>

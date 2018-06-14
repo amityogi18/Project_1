@@ -1,0 +1,14 @@
+<div *ngFor="let option of checkboxOptions.options">
+    <input
+    id="checkboxOptions.id"
+    name="checkboxOptions.name"
+    value="option.value"
+    class="c2c-input-checkboxes c2c-icons-sprite"
+    type="checkbox"
+    title="{{option.label}}"
+    [ngClass]="{'c2c-input-checkboxes-checked': option.checked}"
+    [checked]="option.checked"
+    [tabindex]="tabIndex"
+    (click)="option.checked = !option.checked">
+    <label class="c2c-checkbox-label" *ngIf="option.showTitle">{{option.label}}</label>
+</div>

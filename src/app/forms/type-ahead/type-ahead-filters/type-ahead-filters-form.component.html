@@ -1,0 +1,20 @@
+<div class="container pl-0">
+  <form [formGroup]="filterForm">
+    <div class="row mx-auto">
+        <section class='col-xs-12 col-sm-12 pl-0'>
+          <div class='row mx-auto'>
+            <article class='col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 pl-0'>
+              <div class='form-group row'>
+                <label for="userRole" class='col-sm-2 col-form-label pr-0'>User Role</label>
+                <div class='col-sm-4 pl-0'>
+                    <select formControlName="userRole" id="userRole" class='form-control form-control-sm'>
+                        <option *ngFor="let role of userRoles" [ngValue]="role">{{role}}</option>
+                    </select>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+    </div>
+  </form>
+</div>

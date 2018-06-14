@@ -1,0 +1,25 @@
+@import '../../../../../../assets/sass/variables';
+@import '../../../../../../assets/sass/c2c-common-mixins';
+
+.title {
+  color: $bahamaBlue !important;
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  line-height: normal;
+
+  &:hover {
+    text-decoration: underline !important;
+  }
+
+  @include c2c-text-ellipsis();
+}
+
+.subTitles {
+  display: block;
+  line-height: 1.5;
+  // white-space: pre-line;
+  // word-wrap: break-word;
+
+  @include c2c-text-ellipsis();
+}

@@ -1,0 +1,10 @@
+<nav class="c2c-main-navbar navbar navbar-toggleable-md navbar-expand-lg" [ngClass]="{'nav-alt-bg': currentRoute !== '/welcome'}">
+    <a class="navbar-brand" routerLink="/">C2C Common Library</a>
+
+    <div class="navbar-toggler-right">
+        <a class="nav-link" routerLink="/howTo">How-to Guide</a>
+    </div>
+</nav>
+<div class="container-fluid c2c-outlet">
+  <router-outlet></router-outlet>
+</div>

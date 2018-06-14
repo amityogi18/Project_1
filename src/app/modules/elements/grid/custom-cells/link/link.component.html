@@ -1,0 +1,2 @@
+<a *ngIf="value" [routerLink]="[linkURL, urlParams ]" title="{{value}}">{{ value }}</a>
+<a *ngIf="!value" [routerLink]="[linkURL, data['id']]" title="{{ data['name'] }}">{{ data['name'] }}</a>

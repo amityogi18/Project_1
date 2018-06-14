@@ -1,0 +1,99 @@
+@import '../../../../assets/sass/variables';
+
+#c2c-ag-grid {
+  height: calc(100% - 72px);
+  width: 100%;
+}
+
+/* Pagination ribbon */
+.c2c-pagination-ribbon {
+  padding: 5px 10px;
+  font-family: "Roboto";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  color: $charcoal;
+
+  .ag-paging-row-summary-panel {
+    color: $charcoal;
+  }
+
+  button.ag-paging-button.btn.btn-default {
+    height: 26px;
+    min-width: 26px;
+    display: inline-block;
+    margin-top: -4px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 0px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #f3f3f3;
+    border-color: #ccc;
+    color: $charcoal;
+
+    &:hover {
+      background-color: #dadada;
+    }
+
+    &:active {
+    outline: 0;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
+    }
+
+  }
+
+  .c2c-next-page-arrow, .c2c-prev-page-arrow {
+    font-size: 16pt;
+    margin-top: 1px;
+  }
+
+  input {
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    width: 50px;
+    height: 26px;
+    padding: 5px 10px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    line-height: 1.42857143;
+    border-radius: 3px;
+    vertical-align: top;
+  }
+
+  select {
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    margin-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    height: 26px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    border-radius: 3px;
+  }
+
+  .button-disabled {
+    cursor: not-allowed !important;
+    background-color: #f3f3f3 !important;
+  }
+
+}

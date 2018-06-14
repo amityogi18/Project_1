@@ -1,0 +1,14 @@
+<div>
+  <div class="grid-image" *ngIf="image">
+    <img src="{{ image }}" alt="{{tooltip}}" title="{{tooltip}}" width="75" height="100">
+  </div>
+  <a [routerLink]="[routeUrl, id]">
+    <div class="grid-title" *ngIf="title" title="{{tooltip}}">
+      <span *ngFor="let item of title" class="{{ item }}">{{ data[item] }}</span>
+      <span *ngIf="isMinor" class="minor-letter">(K)</span>
+    </div>
+  </a>
+  <ul class="grid-subtitle" *ngIf="subTitle">
+    <li *ngFor="let item of data[subTitle]" title="{{item}}">{{ item }}</li>
+  </ul>
+</div>

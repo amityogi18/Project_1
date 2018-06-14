@@ -1,0 +1,32 @@
+// Use for a Module's main background
+@mixin c2c-main-body-gradient($color) {
+  background: -webkit-radial-gradient(ellipse at center, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 90%), linear-gradient(135deg, $color 0%, white 100%);
+  background: -moz-radial-gradient(ellipse at center, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 90%), linear-gradient(135deg, $color 0%, white 100%);
+  background: -o-radial-gradient(ellipse at center, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 90%), linear-gradient(135deg, $color 0%, white 100%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.7) 0%, rgba(255,255,255,0) 90%), linear-gradient(135deg, $color 0%, white 100%);
+}
+
+// Use on the Module Title nav link (top-left w/ hamburger icon)
+@mixin c2c-module-title-gradient($color) {
+  background: -webkit-linear-gradient(to right, white 0%, $color 100%) !important;
+  background: -moz-linear-gradient(to right, white 0%, $color 100%) !important;
+  background: -o-linear-gradient(to right, white 0%, $color 100%) !important;
+  background: linear-gradient(to right, white 0%, $color 100%) !important;
+}
+
+// Use for the background of the navigation bar
+@mixin c2c-navigation-bar-background($left-color, $right-color) {
+  background: linear-gradient(90deg, $left-color 0%, $right-color 200%) !important;
+}
+
+// Use to add an ellisis (...) to text when it overflows a div
+@mixin c2c-text-ellipsis() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Use for setting a module-specific bottom border on rows that display data. Acts as an horizontal rule.
+@mixin c2c-row-border-bottom($color) {
+  border-bottom: 1px solid $color;
+}

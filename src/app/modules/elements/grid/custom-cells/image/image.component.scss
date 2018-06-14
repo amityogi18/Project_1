@@ -1,0 +1,44 @@
+@import '../../../../../../assets/sass/variables';
+@import '../../../../../../assets/sass/c2c-common-mixins';
+
+.grid-image {
+  float: left;
+  margin-right: 5px;
+}
+
+.grid-title {
+  vertical-align: top;
+
+  @include c2c-text-ellipsis();
+
+  .firstName {
+    color: $bahamaBlue;
+    font-size: 1.5em;
+    font-weight: lighter;
+    margin-right: 5px;
+  }
+
+  .lastName {
+    color: $bahamaBlue;
+    font-size: 1.5em;
+    font-weight: normal;
+  }
+}
+
+.grid-subtitle {
+  color: $smog;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+
+  li {
+    height: 20px;
+    list-style: none;
+
+    @include c2c-text-ellipsis();
+  }
+}
+
+.minor-letter{
+  color: $black;
+  vertical-align: top;
+}

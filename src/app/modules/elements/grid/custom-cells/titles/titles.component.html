@@ -1,0 +1,3 @@
+<a *ngIf="!isLinked" class="title" title="{{title}}">{{ title }}</a>
+<c2c-link class="title" *ngIf="isLinked" [params]="params" [value]="title"></c2c-link>
+<span class="subTitles" title="{{subTitles}}">{{ subTitles }}</span>

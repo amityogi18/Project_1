@@ -1,0 +1,12 @@
+<div> 
+  <div class="input-group">  
+  <input
+    class="form-control c2c-input"
+    type="text"
+    placeholder="{{ placeholder }}"
+    [(ngModel)]="value"
+    [tabindex]="tabIndex"
+    (ngModelChange)="emitValue()"
+    maxlength="{{ maxlength }}">
+  </div>
+</div>

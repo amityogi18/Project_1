@@ -1,0 +1,132 @@
+@import "../../../../../assets/sass/variables";
+
+/* USER MANAGEMENT SECTION */
+.c2c-user-management-section {
+  float: right;
+  height: 100%;
+  width: 30%;
+  text-align: right;
+  padding: 15px 0px 15px 15px;
+
+  > div {
+    display: inline-block;
+  }
+}
+
+.c2c-user-dropdown {
+  vertical-align: top;
+
+  button#dropdownMenu {
+    background-color: transparent;
+    border: none;
+    color: white;
+
+    :focus {
+      border: none;
+    }
+  }
+
+  .dropdown > button {
+    padding: 2px;
+    cursor: pointer;
+    font-family: "Michroma";
+    font-size: 11.5px;
+  }
+}
+
+.dropdown-menu > a {
+  cursor: pointer;
+}
+
+.c2c-user-management-icons {
+  text-align: right;
+
+  div {
+    color: white;
+    display: inline-block;
+  }
+}
+
+.c2c-icons {
+  cursor: pointer;
+
+  .c2c-alerts-icon {
+    background-position: 0px -196px;
+
+    &:hover {
+      background-position: 0px -222px;
+    }
+  }
+
+  .c2c-messages-icon {
+    background-position: 0px -853px;
+
+    &:hover {
+      background-position: 0px -879px;
+    }
+  }
+}
+
+.dropdown-menu {
+  background-color: white;
+  box-shadow: $box-shadow;
+  padding: 0;
+  z-index: 500;
+
+  a {
+    color: $charcoal;
+    font-family: 'Roboto';
+    font-size: 15px;
+    padding: 2px 5px;
+
+    &:hover {
+      background-color: $blueHighlight;
+      color: $dargenta;
+    }
+
+    &:first-child {
+      border-top-right-radius: 0.25rem;
+      border-top-left-radius: 0.25rem;
+    }
+
+    &:last-child {
+      border-bottom-right-radius: 0.25rem;
+      border-bottom-left-radius: 0.25rem;
+    }
+  }
+}
+/* END USER MANAGEMENT SECTION */
+
+/* SEARCH BOX */
+.c2c-search-box-section {
+  position: relative;
+  float: right;
+  padding: 15px;
+  height: 100%;
+  width: 70%;
+}
+
+.banner-type-ahead {
+  // *for when we add the typeahead componene
+}
+
+.c2c-search-box {
+  width: 100%;
+  background-color: rgba(5, 143, 193, 0.3);
+  padding-right: 30px;
+  padding-left: 5px;
+  color: white;
+  font-family: "Roboto";
+  font-size: 13px;
+  border: 1px solid #ccc;
+  height: 22px;
+}
+
+.c2c-search-glass {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background-position: 1px -1332px;
+  cursor: pointer;
+}
+/* END SEARCH BOX */

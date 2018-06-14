@@ -1,0 +1,29 @@
+<div>
+    <span
+        id="c2c-note-btn"
+        class="c2c-icons-sprite c2c-note-icon"
+        (keydown.enter)="openModal(content)"
+        [tabIndex]="tabIndex"
+        (click)="openModal(content)"
+        [ngClass]="{'c2c-note-icon-notes-exist': notesExist}"
+        title="{{ tooltip }}">
+    </span>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-body">
+        <div class="c2c-modal-icons">
+                <c2c-save-button id="c2c-modal-save-button" class="mr-2" [saveButtonOptions]="saveButtonOptions" title="Save" (click)="emitValue('SAVE'); c('Save click');"></c2c-save-button>
+                <c2c-cancel-button id="c2c-modal-cancel-button" [cancelButtonOptions]="cancelButtonOptions" (click)="emitValue('CANCEL'); d('Close click')" title="Cancel"></c2c-cancel-button>
+            <!--<span class="c2c-icons-sprite c2c-save-icon c2c-modal-icon" (click)="c('Close click'); save()" title="Save"></span>-->
+           <!-- <span class="c2c-icons-sprite c2c-exit-icon c2c-modal-icon" (click)="c('Close click')" title="Close"></span>-->
+        </div>
+        <span class="c2c-modal-title">Notes</span>
+        <div class="c2c-modal-icon-section">
+            <div class="c2c-text-editor">
+                <editor apiKey="xtpwf9cpup58jrvxlasqd72k33wuwwbr0ecwst236qi42jwu" [(ngModel)]="value" [init]=editorConfig *ngIf="useRTE"></editor>
+                <textarea id="notes-text-field" class="plain-text-field" [(ngModel)]="value" [attr.maxlength]="maxlength" rows="{{rows}}" *ngIf="!useRTE"></textarea>
+            </div>
+        </div>
+    </div>
+</ng-template>

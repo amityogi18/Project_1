@@ -1,0 +1,54 @@
+button {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  width: 100%;
+  height: 33px;
+  font-family: Roboto;
+  font-size: 12px;
+  text-align: left;
+  white-space: normal; // for fix of FF icon float issue where caret vertical position is offset
+}
+
+button:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+  cursor: pointer;
+}
+
+button:active {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+  outline: 0;
+  background-image: none;
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.dropdown-toggle::after {
+  visibility: hidden;
+}
+
+.c2c-dropdown-menu {
+  width: 100%;
+}
+
+.dropdown-item {
+  height: 25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 5px;
+  font-size: 12px;
+}
+
+.dropdown-menu {
+  padding: 0px;
+}
+
+button#dropdownBasic1:focus {
+  background-color: #fff;
+  border-color: #5cb3fd;
+  outline: none;
+}

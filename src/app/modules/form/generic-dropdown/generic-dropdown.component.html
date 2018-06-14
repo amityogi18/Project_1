@@ -1,0 +1,10 @@
+<div id="c2c-dropdown-row">
+  <div id="c2c-ngb-dropdown" ngbDropdown class="">
+    <button class="btn c2c-dropdown-button" [tabindex]="tabIndex" id="dropdownBasic1" ngbDropdownToggle>{{ dropdownOptions.selection !== '' ? dropdownOptions.selection : dropdownOptions.title }}
+      <i id="c2c-dropdown-caret" class="fa fa-angle-down pull-right"></i>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="c2c-dropdown-menu">
+      <button *ngFor="let option of dropdownOptions.options" id="c2c-dropdown-item-{{option.value}}" class="dropdown-item c2c-dropdown-item" [tabindex]="tabIndex" (click)="performAction(option); userChoice = option.value">{{ option.value }}</button>
+    </div>
+  </div>
+</div>

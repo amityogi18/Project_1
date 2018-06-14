@@ -1,0 +1,12 @@
+<div>
+  <a class="expand" *ngIf="enableCollapse && isCorrectLength()" (click)="toggleState()">
+    <i class="fa fa-angle-double-right" *ngIf="isCollapsed"></i>
+    <i class="fa fa-angle-double-down" *ngIf="!isCollapsed"></i>
+  </a>
+  <ul>
+    <li *ngFor="let item of data" title="{{item.value}}" [ngStyle]="{'height': item.height}">
+      <a *ngIf="item.route" [routerLink]="[item.route]">{{item.value}}</a>
+      <span *ngIf="!item.route">{{item.value}}</span>
+    </li>
+  </ul>
+</div>

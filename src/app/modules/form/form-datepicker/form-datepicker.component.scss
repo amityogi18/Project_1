@@ -1,0 +1,61 @@
+@import '../../../../assets/sass/variables';
+
+.bg-primary {
+    color: $dargenta !important;
+    background-color: $blueWind2 !important;
+}
+
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    border-radius: 0.25rem;
+    display: inline-block;
+    width: 2rem;
+    color: $charcoal;
+}
+
+.custom-day:hover, .custom-day.focused {
+    background-color: $blueWind2;
+}
+
+.error {
+    font-family: Roboto;
+    font-weight: 700;
+    color: $roarange;
+    font-size: 12px;
+}
+
+.has-errors {
+    border: 1px solid $required-border;
+}
+
+:host /deep/ ngb-datepicker {
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    font-family: Roboto;
+
+    .ngb-dp-arrow-btn {
+        color: $charcoal;
+        cursor: pointer;
+
+        &:hover {
+            color: $dargenta;
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .ngb-dp-month-name {
+        color: $charcoal;
+        font-weight: bold;
+    }
+
+    .ngb-dp-weekday {
+        color: $charcoal;
+        font-weight: bold;
+    }
+}

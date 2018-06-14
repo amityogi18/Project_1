@@ -1,0 +1,14 @@
+@import "../../assets/sass/variables";
+
+.fa.fa-globe{
+    color: $globe-icon-color !important;
+}
+
+.text-primary{
+    color: #02215A !important;
+}
+
+::ng-deep .modal-content {
+    border-radius: 0 !important;
+    border: solid 2px $gray-light;
+}

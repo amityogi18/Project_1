@@ -1,0 +1,31 @@
+<div class="c2c-side c2c-height-fill" [ngClass]="{'isCollapsed': sidebarCollapsed}">
+  <div id="c2c-sidebar-div" class="c2c-sidebar">
+    <div id="expand-sidebar-button" class="c2c-sidebar-arrow c2c-expand-arrow" (click)="toggleSlideAwayDiv()" *ngIf="sidebarCollapsed">
+      <span>❭❭</span>
+    </div>
+    <div id="collapse-sidebar-button" class="c2c-sidebar-arrow c2c-collapse-arrow" (click)="toggleSlideAwayDiv()" *ngIf="!sidebarCollapsed">
+      <span>❬❬</span>
+    </div>
+    <div *ngIf="!sidebarCollapsed">
+      <img src="assets/images/WarnerBros_transparent.png" class="img-fluid">
+      <hr>
+      <ul class="navbar-nav">
+        <li *ngFor="let item of navItems" [routerLinkActive]="['active']">
+          <a [routerLink]="['/' + item.route]" (click)="expandNavItem(item)" tabindex="-1">
+            <li class="nav-item" [ngClass]="{'mb-1': (item.displayOrder % 1) === 0}">
+              <span *ngIf="(item.displayOrder % 1) === 0" [attr.id]="'sidebar-nav-' + item.route + '-link'">{{ item.name }}</span>
+              <ul class="navbar-nav" *ngIf="((item.displayOrder % 1) !== 0) && item.display">
+                <li class="nav-item mb-1" style="padding-left: 20px" [attr.id]="'sidebar-nav-' + item.route + '-link'">{{ item.name }}</li>
+              </ul>
+            </li>
+          </a>
+        </li>
+      </ul>
+      <div class="navbar fixed-bottom copyright-footer">
+        <span>&copy; {{ copyright }}</span>
+        <span>{{ company }}</span>
+        <span>Release Number : {{ version }}</span>
+      </div>
+    </div>
+  </div>
+</div>

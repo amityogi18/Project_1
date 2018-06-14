@@ -1,0 +1,223 @@
+@import "../../../../../assets/sass/variables";
+
+nav {
+  background: transparent;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+
+  .navbar-brand {
+    span {
+      display: inline-block;
+      margin-top: 12px;
+    }
+  }
+
+  ul {
+    width: 100%;
+
+    li {
+      cursor: pointer;
+      height: 45px;
+      text-align: center;
+      margin-right: 1px;
+      padding: 10px 0;
+      width: 70px;
+
+      &:first-child {
+        color: $dargenta;
+        padding: 0;
+        width: $sidebar-width;
+
+        .nav-module-icon {
+          float: right;
+          position: relative;
+          width: 14%;
+          height: 100%;
+        }
+
+        .nav-module-name {
+          float: left;
+          font-family: 'Michroma';
+          height: 100%;
+          width: 86%;
+          padding: 10px 5px;
+        }
+      }
+
+      a {
+        height: 100%;
+        width: 100%;
+
+        span {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.c2c-navbar {
+  width: auto;
+  background: linear-gradient(90deg, $bluePearl 0%, white 200%);
+}
+
+.active {
+  background: transparent !important;
+}
+
+.navbar-agreement {
+  background-position: 0 0;
+}
+
+.navbar-aperture {
+  background-position: 0 -74px;
+}
+
+.navbar-star {
+  background-position: 0 -250px;
+}
+
+.navbar-people {
+  background-position: 0 -434px;
+}
+
+.navbar-contact-card {
+  background-position: 0 -508px;
+}
+
+.navbar-handshake {
+  background-position: 0 -633px;
+  height: 25px;
+}
+
+.navbar-home {
+  background-position: 0 -706px;
+}
+
+.navbar-hamburger {
+  background-position: 0 -777px;
+}
+
+.navbar-projector {
+  background-position: 0 -910px;
+}
+
+.navbar-music {
+  background-position: 0 -1057px;
+}
+
+.navbar-pencil {
+  background-position: 0 -1181px;
+}
+
+.image-nav-link:hover, .image-nav-link.active, .dropdown-item:hover {
+  a span {
+    color: $dargenta;
+  }
+  .navbar-music {
+    background-position: 0 -1094px;
+  }
+  .navbar-contact-card {
+    background-position: 0 -545px;
+  }
+  .navbar-agreement {
+    background-position: 0 -37px;
+  }
+  .navbar-aperture {
+    background-position: 0 -111px;
+  }
+  .navbar-star {
+    background-position: 0 -287px;
+  }
+  .navbar-people {
+    background-position: 0 -471px;
+  }
+  .navbar-handshake {
+    background-position: 0 -670px;
+  }
+  .navbar-home {
+    background-position: 0 -743px;
+  }
+  .navbar-pencil {
+    background-position: 0 -1218px;
+  }
+  .navbar-projector {
+    background-position: 0 -947px;
+  }
+}
+
+.text-nav-link {
+  span {
+    color: $bahamaBlue;
+  }
+}
+
+/* HISTORY DROPDOWN WITH HAMBURGER */
+.dropdown-toggle::after {
+  content: none;
+}
+
+.dropdown-item .c2c-main-sprite {
+  margin-left: 0px !important;
+}
+
+.dropdown-menu {
+  background-color: white;
+  box-shadow: $box-shadow;
+  padding: 0;
+  max-width: $sidebar-width;
+  z-index: 500;
+}
+
+.dropdown-item {
+  color: $charcoal;
+  font-family: 'Roboto';
+  font-size: 15px;
+  margin: auto;
+  padding: 0 0 0 10px;
+
+  .c2c-history-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 160px;
+    padding-top: 3px;
+    vertical-align: top;
+  }
+
+  span {
+    margin-top: 2px !important;
+  }
+
+  &:hover {
+    background-color: $blueHighlight;
+    color: $dargenta;
+  }
+}
+/* END DROPDOWN WITH HAMBURGER */
+
+@media only screen and (min-width: 768px)  {
+  nav {
+    ul {
+      li {
+        &:first-child {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 992px)  {
+  nav {
+    ul {
+      li {
+        &:first-child {
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}

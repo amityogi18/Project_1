@@ -1,0 +1,28 @@
+<!-- Temporary button to show unsaved changes modal -->
+<button type="button" class="btn btn-primary c2c-sandbox-btn" (click)="openModal()" *ngIf="showBtn">Unsaved Changes Modal</button>
+<!-- Temporary button ends here -->
+
+
+<!-- modal window -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-body">
+    <div class="c2c-modal-icon-section">
+      <span class="c2c-modal-title">Unsaved Changes</span>
+      <div class="c2c-modal-icons">
+        <span id="c2c-unsaved-changes-button-modal-ok"
+              class="c2c-modal-icon c2c-check-icon c2c-icons-sprite"
+              (click)="close(true)"
+              title="OK"></span>
+        <span id="c2c-unsaved-changes-button-modal-cancel"
+              class="c2c-modal-icon c2c-exit-icon c2c-icons-sprite"
+              (click)="close(false)"
+              title="Cancel"></span>
+      </div>
+    </div>
+    <p>Unsaved changes will be lost. Are you sure you want to continue?</p>
+    <!-- <div class="float-sm-right">
+      <button id="c2c-unsaved-changes-button-modal-ok" type="button" class="btn btn-primary" (click)="c('Close click'); clickOK();">OK</button>
+      <button id="c2c-unsaved-changes-button-modal-cancel" type="button" class="btn" (click)="c('Close click'); clickCancel();">Cancel</button>
+    </div> -->
+  </div>
+</ng-template>

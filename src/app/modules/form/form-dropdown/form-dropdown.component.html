@@ -1,0 +1,11 @@
+<div id="c2c-dropdown-row">
+  <div id="c2c-ngb-dropdown" ngbDropdown>
+    <button type="button" class="btn c2c-dropdown-button" id="dropdownBasic1" [disabled]="readonlyToggle" [ngClass]="{'invalid-field': isInvalid}" ngbDropdownToggle>
+      {{ value ? value.value : dropdownOptions.title }}
+      <i id="c2c-dropdown-caret" class="fa fa-angle-down pull-right"></i>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="c2c-dropdown-menu">
+      <button type="button" *ngFor="let option of dropdownOptions.options" id="c2c-dropdown-item-{{option.value}}" class="dropdown-item c2c-dropdown-item" (click)="selectOption(option)">{{ option.value }}</button>
+    </div>
+  </div>
+</div>

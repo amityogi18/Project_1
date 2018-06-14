@@ -1,0 +1,31 @@
+<div *ngIf='typeAheadServiceData && typeAheadServiceData.length && typeList == "listGroup"' class="col-md-12" >
+  <h6>List: </h6>
+  <div class='list-container'>
+    <ul class="list-group list-group-flush" >
+      <li *ngFor="let item of typeAheadServiceData" class='list-group-item pt-2 pb-2 list-group-item d-flex justify-content-between align-items-center'>
+        <span *ngIf= 'item.suffix && !item.primaryName'>{{item.firstName}} {{item.middleName}} {{item.entityName}}, {{item.suffix}} </span>
+        <span *ngIf= '!item.suffix && !item.primaryName'>{{item.firstName}} {{item.middleName}} {{item.entityName}} {{item.suffix}} </span>
+        <span *ngIf= 'item.primaryName'>{{item.entityName}}</span>
+        <span
+          class="close badge fa fa-minus-circle text-dark"
+          style="font-size:18px;"
+          (click)='deleteRecordFromList(item)'>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="col-md-12 mt-1">
+  <ul class="list-inline" *ngIf="typeList == 'listInline'">
+    <li *ngFor="let item of typeAheadServiceData; let isFirst = first;" class="list-inline-item mb-2 mr-2 d-inline-flex align-items-md-center ">
+      <c2c-form-radio-button [singleButton]=true (click)="currentItemSelected(item)" [isChecked]="(isFirst && selectFirstItem) || item.selectedItemInList" class="mr-1 align-items-md-center" *ngIf="radioButton"></c2c-form-radio-button>
+      <div class=" name-bg d-inline-flex align-items-md-center m-1 px-3 py-1">
+        <span *ngIf= 'item.suffix && !item.primaryName' class="mr-2">{{item.firstName}} {{item.middleName}} {{item.entityName}}, {{item.suffix}} </span>
+        <span *ngIf= '!item.suffix && !item.primaryName' class="mr-2 name-bg">{{item.firstName}} {{item.middleName}} {{item.entityName}} {{item.suffix}} </span>
+        <span *ngIf= 'item.primaryName' class="mr-2 name-bg">{{item.entityName}}</span>
+        <c2c-edit-button *ngIf="editButton"></c2c-edit-button>
+        <c2c-minus-button *ngIf="removeButton" (click)='deleteRecordFromList(item)' [ngClass]="{'disabled-btns': item.selectedItemInList}" ></c2c-minus-button >
+      </div>
+    </li>
+  </ul>
+</div>

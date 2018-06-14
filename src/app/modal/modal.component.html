@@ -1,0 +1,33 @@
+<ng-template #modal modal let-c="close" let-d="dismiss">
+  <div class="modal-header border-bottom-0">
+      <i class="fa fa-globe fa-2x pull-left text-primary"></i>
+    <p class="modal-title text-center"><small><strong>Click the international character to include in Name</strong></small></p>
+    <button type="button"
+      class="close fa fa-times-circle-o fa-2x ml-1"
+      aria-label="Close" (click)="close()">
+    </button>
+  </div>
+  <div class="container pb-2">
+      <div class="row justify-content-center">
+          <div class="col-2" *ngFor="let c of accentedCharacters;let isFirst = first; let idx = index">
+              <div class='text-center'>
+                  <p><small><strong>{{c.heading}}</strong></small></p>
+                  <button *ngIf="idx == 0" #accentBtn type="button" c2cAutoFocus [focusOnSingleItem]=true [focusOnFirst]="isFirst"
+                          class="btn btn-default btn-lg mt-2 mb-2 rounded-0 pt-1 pb-0"
+                          (click)="selectedCharacter($event)">
+                          <span class='text-primary'><strong>{{c.lower}}</strong></span>
+                  </button>
+                  <button *ngIf="idx > 0" #accentBtn type="button"
+                          class="btn btn-default btn-lg mt-2 mb-2 rounded-0 pt-1 pb-0"
+                          (click)="selectedCharacter($event)">
+                          <span class='text-primary'><strong>{{c.lower}}</strong></span>
+                  </button>
+                  <button type="button" class='btn btn-default btn-lg mt-2 mb-2 rounded-0 pt-1 pb-0' (click)="selectedCharacter($event)">
+                    <span class='text-primary'><strong>{{c.upper}}</strong></span>
+                  </button>
+              </div>
+          </div>
+      </div>
+</div>
+  <!-- <ng-content select="[modal-body]"></ng-content> -->
+</ng-template>

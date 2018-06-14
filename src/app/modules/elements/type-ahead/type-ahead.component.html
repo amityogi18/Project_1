@@ -1,0 +1,72 @@
+<div id="typeAheadContainer" class="container">
+
+  <div class="btn-toolbar" role="toolbar" aria-label="">
+    <div class="col-md-12 pl-0">
+      <label for="" class="d-inline" *ngIf="showTitle" [innerHtml]="title"></label>
+      <div class="btn-group" role="group" aria-label="">
+        <button type="button"
+                *ngIf="showAccentedCharacterIcon"
+                [disabled]="!hasAccentedCharacters"
+                [ngClass]="{'disable-btn-icon':!hasAccentedCharacters, 'enable-btn-icon':hasAccentedCharacters}"
+                class="btn-icon fa fa-globe d-inline"
+                (click)="openAccentedCharacterModal()"
+                placement="bottom"
+                ngbTooltip="International Character"
+                triggers="hover">
+        </button>
+      </div>
+        <div class="btn-group mr-2" role="group" *ngIf="showAddSameNameButton">
+          <div class="btn-group btn-group-sm" role="group" aria-label="">
+            <button #addBtn id="addSameNameBtn" type='add' class='btn btn-secondary btn-sm' (click)="addSameNameValues()" [disabled]="!hasData">Add as New
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- <span class="row" style><p *ngIf="searching">Searching...</p></span> -->
+  <div class="invalid-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+  <div class="row mt-2">
+    <div class="col-md-10 pr-0">
+      <form [formGroup]="typeAheadForm" novalidate>
+        <ng-template #rt let-results="result" let-t="term">
+          <ngb-highlight [result]="displayTypeAheadResults(results)" [term]="t"></ngb-highlight>
+          <span *ngIf="displayResultsToShow[this.columnDataAddOns]">
+            <span *ngIf="showAlias">
+              (alias for {{ displayResultsToShow[this.columnDataAddOns] }})
+            </span>
+          </span>
+          {{ displayResultsToShow.metaData }}
+        </ng-template>
+        <div class="typeahead-container row no-gutter">
+          <div class="col-md-1">
+            <div *ngIf="searching" class="loader"></div>
+          </div>
+          <div class="col-md-11 pl-1">
+            <input #typeAheadField
+              formControlName="typeAheadField"
+              id="typeAheadField"
+              type="text"
+              class="form-control"
+              placeholder="{{placeholderText}}"
+              [focusFirst]="false"
+              [ngbTypeahead]="nameSearch"
+              [class.is-invalid]="searchFailed"
+              [resultTemplate]="rt"
+              [inputFormatter]="formatter"
+              (selectItem)="selectedItem($event)"
+              (focus)="typeAheadFocusSubject.next($event.target.value)"
+              (keyup)="onKeyUp($event)"
+              (mouseup)="onMouseUp($event)"/>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-2 pl-0">
+      <div class='btn-group btn-group-md'>
+        <button #clearBtn id="clearBtn" type='reset' class='btn btn-secondary btn-md' (click)="clearTypeAheadValues($event, clearBtn)"
+          [disabled]="!hasData">Clear
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

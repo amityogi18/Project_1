@@ -1,0 +1,28 @@
+<nav class="navbar navbar-toggleable-sm navbar-expand-lg c2c-navbar">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="c2c-module-title navbar-brand nav-item dropdown">
+        <a id="dropdownMenuButton" data-toggle="dropdown">
+          <div class="nav-module-name">
+            {{moduleName}}
+          </div>
+          <div class="nav-module-icon">
+            <span class="c2c-main-sprite navbar-hamburger"></span>
+          </div>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" *ngFor="let historyItem of historyItems" href="{{historyItem.href}}">
+            <span class="c2c-nav-sprite" ngClass="{{historyItem.class}}" title="{{historyItem.historyLabel}}"></span>
+            <span class="c2c-history-item">{{historyItem.historyLabel}}</span>
+          </a>
+        </div>
+      </li>
+      <li class="c2c-nav-item nav-item image-nav-link" *ngFor="let item of navbarItems" [ngClass]="{'active': item.label === moduleName}">
+        <a href="{{item.href}}" class="text-nav-link" tabindex="-1">
+          <span *ngIf="item.class" class="c2c-nav-sprite" ngClass="{{item.class}}" title="{{item.label}}"></span>
+          <span *ngIf="!item.class" title="{{item.label}}">{{item.label}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

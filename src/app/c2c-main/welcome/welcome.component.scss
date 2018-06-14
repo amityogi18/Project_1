@@ -1,0 +1,32 @@
+.welcome-wrapper {
+    text-align: center;
+
+    .welcome-bg {
+        background: lightblue;
+    }
+
+    .welcome-header {
+        background: #DD0031;
+        border-top: 1px solid #C3002F;
+        border-bottom: 1px solid #C3002F;
+        color: white;
+    }
+
+    .welcome-subHeader {
+      margin-bottom: 5px;
+    }
+
+    .welcome-components {
+      width: 60%;
+      margin: auto;
+
+      h5 {
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+
+      hr {
+        margin: 0;
+      }
+    }
+}

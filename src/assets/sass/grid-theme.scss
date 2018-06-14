@@ -1,0 +1,63 @@
+// Icons
+$icons-path: "~ag-grid/src/styles/icons/";
+
+// Dimensions
+$cell-horizontal-padding: 5px;
+$grid-size: 4px !default;
+$header-height: $grid-size * 6 + 1 !default;
+
+// Colors
+$border-color: $blueIce !default;
+$cell-horizontal-border: 1px solid $blueIce;
+$foreground-color: $charcoal;
+$header-background-image: none;
+$header-background-color: $bluePearl !default;
+$odd-row-background-color: $blueHighlight;
+$panel-background-color: $bluePearl;
+$value-change-value-highlight-background-color: rgba($dargenta, 0.8);
+
+// Fonts
+$font-family: 'Roboto', sans-serif;
+$font-size: 12px;
+$font-weight: normal;
+
+$secondary-font-family: 'Prompt', sans-serif;
+$secondary-font-size: 14px;
+$secondary-font-weight: 400;
+
+// These imports need to go after the variables in order to override correctly
+@import "~ag-grid/src/styles/ag-grid.scss";
+@import "~ag-grid/src/styles/ag-theme-fresh.scss";
+
+// Classes that don't have variable overrides
+.ag-theme-fresh .ag-header-cell, .ag-theme-fresh .ag-header-group-cell {
+  letter-spacing: 0.5px;
+  line-height: 25px;
+  color: $charcoal;
+}
+
+.ag-theme-fresh .ag-cell {
+  padding: 5px 10px 5px 5px;
+}
+
+.ag-floating-filter-input {
+  border: 1px solid $bluePetal1;
+  border-radius: 2px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  padding: 2px 20px 2px 5px;
+}
+
+.ag-theme-fresh .ag-header-cell-moving {
+  background-color: $blueMoon;
+}
+
+.ag-theme-fresh.ag-dnd-ghost {
+  background-color: $bluePearl;
+}
+
+.ag-overlay-loading-center {
+  border-radius: 0 !important;
+  box-shadow: $box-shadow !important;
+  color: $charcoal !important;
+}

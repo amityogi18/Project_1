@@ -1,0 +1,37 @@
+
+<div>
+  <div>
+    <input type="text"
+            #datepicker
+            class="form-control c2c-input"
+            placeholder="{{ placeholder }}"
+            name="dp"
+            [tabindex]="tabIndex"
+            #valid="ngModel"
+            [(ngModel)]="selectedDate"
+            (ngModelChange)="verifyValidDate($event)"
+            ngbDatepicker
+            #d="ngbDatepicker"
+            [dayTemplate]="customDay"
+            [markDisabled]="isDisabled"
+            navigateTo="{ year: 2015, month: 3 }"
+            firstDayOfWeek="7"
+            autocomplete="off"
+            [ngClass]="{ 'has-errors': isValid === false }">
+  </div>
+  <div>
+    <span id="c2c-date-error" class="error" *ngIf="isValid === false">Please enter a valid date format MM/DD/YYYY.</span>
+  </div>
+</div>
+
+<ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled">
+  <span class="custom-day" [ngClass]="{ 'bg-primary': (selected == true && selectedDate != null) || (validation.status == 'VALID' && (currentMonth == date.month && enteredDay == date.day && currentMonth == enteredMonth)) }" *ngIf="currentMonth == date.month && thisDay != date.day">
+    {{ date.day }}
+  </span>
+  <span class="custom-day" [ngClass]="{ 'bg-primary': (selected == true || selectedDate == null) && currentMonth == thisMonth }" *ngIf="currentMonth == date.month && thisDay == date.day">
+    {{ date.day }}
+  </span>
+  <span class="custom-day" [class.text-muted]="disabled" *ngIf="currentMonth != date.month">
+    {{ date.day }}
+  </span>
+</ng-template>

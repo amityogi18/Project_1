@@ -1,0 +1,738 @@
+@import "variables";
+@import "c2c-common-mixins";
+@import 'grid-theme.scss';
+$fa-font-path: "~font-awesome/fonts";
+@import './node_modules/font-awesome/scss/font-awesome';
+
+//Font imports
+@import url('https://fonts.googleapis.com/css?family=Michroma');
+@import url('https://fonts.googleapis.com/css?family=Prompt');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+//Element classes
+input.c2c-input,
+button.c2c-dropdown-item {
+  @extend
+    .c2c-data-item;
+  font-weight: 500;
+
+  &:disabled {
+    background-color: transparent;
+    border: none;
+    pointer-events: none;
+    height: 33px;
+    padding-left: 0;
+
+    i {
+      display: none;
+    }
+  }
+}
+
+span.c2c-label-text,
+.c2c-checkbox-label {
+  @extend
+    .c2c-data-item;
+  font-weight: 300;
+}
+
+button.c2c-dropdown-button {
+  @extend
+    .c2c-data-item;
+  font-weight: 300;
+  &:focus {
+    box-shadow: none;
+  }
+  &:disabled {
+    background-color: transparent;
+    border: none;
+    pointer-events: none;
+    padding-left: 0;
+    opacity: 1;
+
+    i {
+      display: none;
+    }
+  }
+}
+
+.c2c-radio-label {
+  @extend
+    .c2c-data-item;
+  margin-left: 5px;
+}
+
+span.c2c-label-text {
+  position: relative;
+}
+
+.c2c-data-item {
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: 0.25px;
+  color: $charcoal !important;
+}
+
+//Structural classes
+.c2c-main-container {
+  height: 100%;
+}
+
+.c2c-module-title {
+  background: linear-gradient(to right, #ffffff 0%,#CCD8ED 100%);
+}
+
+.c2c-nav-item {
+  background: linear-gradient(to bottom, $blueWind2 24%, $blueWind1 85%);
+}
+
+.c2c-main-content {
+  @extend
+    .c2c-height-fill;
+  flex-grow: 9;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.c2c-view {
+  height: calc(100% - 30px);
+  margin: 15px;
+}
+
+.c2c-view-inner {
+  height: auto;
+  margin-bottom: 15px;
+}
+
+.c2c-side {
+  display: flex;
+  flex-grow: 1;
+}
+
+.c2c-card {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.33) 1px 2px 7px 0px;
+  height: 100%;
+  padding: 15px;
+}
+
+.c2c-grid-header {
+  position: relative;
+
+  div {
+    display: inline-block;
+  }
+}
+
+.c2c-grid-header-title {
+  font-family: "Prompt";
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: .5px;
+  color: $charcoal;
+}
+
+.c2c-header-title {
+  @extend
+    .c2c-grid-header-title;
+}
+
+//Apply to elements that need to fill the rest of a screen
+.c2c-flex-grow {
+  flex: 1 0 auto;
+}
+
+.c2c-height-fill {
+  height: calc(100% - 60px);
+  padding-top: 45px
+}
+
+// Images
+.c2c-banner-row {
+  margin-right: 0px;
+  margin-left: 0px;
+  background-image: url('../images/c2c-banner-bg.png');
+  background-repeat: no-repeat;
+  height: 60px;
+}
+
+.c2c-main-sprite {
+  background-image: url("../images/sprite.png");
+  @extend
+    .c2c-icons-layout;
+}
+
+.c2c-nav-sprite {
+  background-image: url("../images/sprite.png");
+  @extend
+    .c2c-nav-layout;
+}
+
+.c2c-icons-sprite {
+  background-image: url("../images/icons-sprite.png");
+  @extend
+    .c2c-icons-layout;
+}
+
+.c2c-reset-sprite {
+  background-image: url("../images/reset-sprite.png");
+  @extend
+    .c2c-icons-layout;
+}
+
+.c2c-filter-sprite {
+  background-image: url("../images/filter-sprite.png");
+  @extend
+    .c2c-icons-layout;
+}
+
+.c2c-refresh-icon {
+  @extend
+    .c2c-icons-layout;
+}
+
+// Header Icons
+.c2c-grid-header-buttons-div {
+  position: absolute;
+  right: 0px;
+
+  > span {
+    display: inline-block;
+  }
+
+  c2c-refresh-button { // special adjustment required because it's a font awesome icon
+    position: relative;
+    left: 5px;
+    top: -7px;
+  }
+}
+
+.c2c-save-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: -5px -927px;
+  &:hover {
+    background-position: -5px -906px;
+  }
+}
+
+.c2c-plus-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -1306px;
+  &:hover {
+    background-position: 0px -1279px;
+  }
+}
+
+.c2c-reset-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px 4px;
+  &:hover {
+    background-position: 0px -18px;
+  }
+}
+
+.c2c-filter-icon-x {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -22px;
+  &:hover {
+    background-position: 0px 3px;
+  }
+}
+
+.c2c-filter-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -72px;
+  &:hover {
+    background-position: 0px -47px;
+  }
+}
+
+.c2c-exit-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: -6px -458px;
+  &:hover {
+    background-position: -6px -436px;
+  }
+}
+
+.c2c-note-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: -6px -595px;
+  &:hover {
+    background-position: -6px -617px;
+  }
+}
+
+.c2c-note-icon-notes-exist {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: -6px -1202px;
+  &:hover {
+    background-position: -6px -573px;
+  }
+}
+
+.c2c-pdf-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -1151px;
+  &:hover {
+    background-position: 0px -1126px;
+  }
+}
+
+.c2c-minus-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: -6px -524px;
+  &:hover {
+    background-position: -6px -502px;
+  }
+}
+
+.c2c-edit-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -601px;
+  &:hover {
+    background-position: 0px -576px;
+  }
+}
+
+.c2c-continue-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -403px;
+  &:hover {
+    background-position: 0px -376px;
+  }
+}
+.c2c-back-icon {
+  @extend
+    .c2c-page-icons-layout;
+  background-position: 0px -349px;
+  &:hover {
+    background-position: 0px -322px;
+  }
+}
+
+.c2c-slide-left-arrow {
+  @extend
+    .c2c-slide-arrows;
+  background-position: -5px -995px;
+  &:hover {
+    background-position: -5px -1046px;
+  }
+}
+
+.c2c-slide-right-arrow {
+  @extend
+    .c2c-slide-arrows;
+  background-position: -2px -1097px;
+  &:hover {
+    background-position: -2px -1148px;
+  }
+}
+
+.c2c-nav-layout {
+  background-repeat: no-repeat;
+  display: block;
+  height: 28px;
+  width: 27px;
+}
+
+.c2c-icons-layout {
+  background-repeat: no-repeat;
+  display: block;
+  height: 26px;
+  width: 17px;
+}
+
+.c2c-page-icons-layout {
+  cursor: pointer;
+  height: 26px;
+  width: 17px;
+}
+
+.c2c-slide-arrows {
+  cursor: pointer;
+  height: 46px;
+  width: 20px;
+}
+
+// special class just for refresh button as it's a font awesome icon
+.c2c-fa-refresh {
+  @extend
+    .c2c-page-icons-layout;
+  color: $charcoal;
+  &:hover {
+    color: $dargenta;
+  }
+}
+
+.c2c-sandbox-btn {
+  cursor: pointer;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.c2c-outlet {
+  height: calc(100% - 60px) !important; // header-height is 60 px
+}
+
+::-webkit-input-placeholder {
+  opacity: .5 !important; /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  opacity: .5 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  opacity: .5 !important;
+}
+
+// custom checkboxes
+.c2c-input-checkboxes {
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  -webkit-appearance: unset;
+  -moz-appearance: unset;
+  background-position: -7px -976px;
+  &:hover {
+    background-position: -7px -955px;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+// custom checkboxes checked
+.c2c-input-checkboxes-checked {
+  background-position: -7px -661px;
+  &:hover {
+    background-position: -7px -640px;
+  }
+}
+
+.c2c-input-check {
+  background-position: -7px -704px;
+  &:hover {
+    background-position: -7px -683px;
+  }
+}
+
+.c2c-visiblity-hidden {
+  visibility: hidden;
+}
+
+.c2c-grid-header-sub-title {
+  font-family: "Prompt";
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: .5px;
+  color: $charcoal;
+}
+
+.body-subhead1{
+  font-family: 'Prompt';
+  font-size: 12px;
+  letter-spacing: 0px;
+}
+
+.body-subhead2{
+  font-family: 'Roboto';
+  font-size: 10px;
+  letter-spacing: 0px;
+}
+
+.c2c-standard-text {
+  color: $charcoal;
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.25px;
+}
+
+.c2c-data-item-label {
+  @extend .c2c-standard-text;
+
+  &::after {
+    content: ':';
+    position: absolute;
+    top: 4px;
+    right: 0;
+  }
+}
+
+.c2c-data-item-value {
+  color: $charcoal;
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  padding-left: 10px;
+}
+
+.c2c-tab-list {
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+
+  .c2c-tab-item:first-child {
+    margin-left: 0;
+  }
+
+  .c2c-tab-item {
+    float: left;
+    list-style-type: none;
+    margin: 0 15px;
+  }
+}
+
+.c2c-tab-title {
+  border-bottom: 3px solid transparent;
+  color: $concrete;
+  font-family: 'Prompt';
+  font-size: 16.5px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+
+  &:hover {
+    border-bottom: 3px solid $concrete;
+    color: $concrete;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: $charcoal;
+    text-decoration: none;
+  }
+}
+
+.c2c-tab-active {
+  border-bottom: 3px solid $charcoal;
+  color: $charcoal;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.c2c-slider {
+  .c2c-slider-indicators {
+    margin: 0;
+
+    li {
+      border: 1px solid $cornflower;
+      border-radius: 10px;
+      height: 8px;
+      width: 8px;
+      max-width: 8px;
+    }
+
+    .active {
+      background-color: $cornflower;
+    }
+  }
+}
+
+.c2c-slider-buttons {
+  text-align: right;
+
+  > a {
+    display: inline-block;
+  }
+}
+
+.c2c-card-header {
+  font-family: Prompt;
+  font-size: 16.5px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.c2c-slider-row {
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.c2c-slider-data {
+  color: $charcoal;
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: normal;
+  letter-spacing: 0.25px;
+}
+
+.c2c-wizard-section-start {
+  width: 162px;
+  height: 47px;
+  background: url("../images/wizard_section_start_unselected.png");
+  transition: background .5s ease;
+
+  &:hover {
+    background: url("../images/wizard_section_start_selected.png");
+  }
+}
+
+.c2c-wizard-section-middle {
+  width: 175px;
+  height: 47px;
+  background: url("../images/wizard_section_middle_unselected.png");
+  transition: background .5s ease;
+
+  &:hover {
+    background: url("../images/wizard_section_middle_selected.png");
+  }
+}
+
+.c2c-wizard-section-end {
+  width: 162px;
+  height: 47px;
+  background: url("../images/wizard_section_end_unselected.png");
+  transition: background .5s ease;
+
+  &:hover {
+    background: url("../images/wizard_section_end_selected.png");
+  }
+}
+
+.c2c-wizard-flag {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  height: 12px;
+  width: 19px;
+}
+
+.c2c-flag-incomplete {
+  background: url("../images/flag_incomplete.png");
+}
+
+.c2c-flag-not-applicable {
+  background: url("../images/flag_not_applicable.png");
+}
+
+.c2c-flag-complete {
+  background: url("../images/flag_completed.png");
+}
+
+.c2c-wizard-section-title {
+  color: $bahamaBlue;
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.c2c-wizard-section-list {
+  display: inline-flex;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 5px 0;
+  white-space: nowrap;
+
+  .c2c-wizard-section-li {
+    display: inline-flex;
+    list-style-type: none;
+
+    > a {
+      cursor: pointer;
+      padding: 5px 20px;
+      position: relative;
+      text-decoration: none;
+
+      &:hover {
+        color: $dargenta;
+        text-decoration: none;
+      }
+
+      .c2c-wizard-section-text {
+        white-space: normal;
+      }
+
+      @extend .c2c-wizard-section-middle,
+              .c2c-wizard-section-title;
+    }
+
+    &:first-child > a {
+      padding: 5px 10px;
+      @extend .c2c-wizard-section-start;
+    }
+
+    &:last-child > a {
+      padding: 5px 20px;
+
+      .c2c-wizard-flag {
+        display: none;
+      }
+
+      @extend .c2c-wizard-section-end;
+    }
+  }
+}
+
+.c2c-wizard-section-active {
+  > a {
+    background: url("../images/wizard_section_middle_selected.png") !important;
+
+    span {
+      color: $dargenta;
+    }
+  }
+
+  &:first-child > a {
+    background: url("../images/wizard_section_start_selected.png") !important;
+  }
+
+  &:last-child > a {
+    background: url("../images/wizard_section_end_selected.png") !important;
+  }
+}
+
+.c2c-hr-2 {
+  border-width: 2px;
+}
+
+.c2c-error-message {
+  color: #fb2e12;
+  font-size: 12px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+}
+
+.invalid-field {
+  border: 1px solid red !important;
+}
+
+.c2c-readonly-form {
+  border: none;
+  background-color: transparent;
+  pointer-events: none;
+
+  button {
+    border: none !important;
+    background-color: transparent !important;
+    pointer-events: none !important;
+
+    i {
+      display: none;
+    }
+  }
+
+  input {
+    border: none !important;
+    background-color: transparent !important;
+    pointer-events: none !important;
+  }
+
+}

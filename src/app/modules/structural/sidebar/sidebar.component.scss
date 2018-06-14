@@ -1,0 +1,98 @@
+@import '../../../../assets/sass/variables';
+
+.c2c-sidebar-arrow {
+  position: absolute;
+  font-size: 1.7em;
+  font-weight: bolder;
+  cursor: pointer;
+  &:hover {
+    color: $dargenta;
+  }
+}
+
+.c2c-collapse-arrow {
+  right: 5px;
+  top: -9px;
+}
+
+.isCollapsed {
+  flex-grow: 0;
+}
+
+.c2c-expand-arrow {
+  left: 3px;
+  right: 6px;
+  top: -9px;
+}
+
+.copyright-footer {
+  font-size: 7px;
+  padding: 15px 30px;
+  color: $charcoal;
+  max-width: 204px;
+}
+
+.c2c-sidebar {
+  position: relative;
+  background-color: white;
+  padding: 15px 15px;
+  height: 100%;
+  // min-width: $sidebar-width;
+
+  img {
+    width: 144px;
+  }
+
+  ul {
+    .active {
+      a {
+        color: $dargenta;
+      }
+    }
+
+    a {
+      color: $charcoal;
+      text-decoration: none;
+    }
+    li {
+      font-family: 'Michroma';
+      font-size: 9px;
+
+      &:hover {
+        color: $dargenta;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 768px)  {
+  .c2c-sidebar {
+    max-width: 140px;
+    // min-width: 140px;
+    ul {
+      li {
+          font-size: 9px;
+      }
+    }
+  }
+
+  .copyright-footer {
+    font-size: 7px;
+  }
+}
+
+@media only screen and (min-width: 992px)  {
+  .c2c-sidebar {
+    max-width: $sidebar-width;
+    // min-width: $sidebar-width;
+    ul {
+      li {
+          font-size: 11px;
+      }
+    }
+  }
+
+  .copyright-footer {
+    font-size: 9px;
+  }
+}

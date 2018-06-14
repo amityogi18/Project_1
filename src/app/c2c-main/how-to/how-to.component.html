@@ -1,0 +1,114 @@
+<div class="c2c-how-to">
+  <h1>C2C Common Library How-To Guide</h1>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <h2>Creating a Common Component</h2>
+      <h4>In Common Project:</h4>
+      <div>
+        <ol>
+          <li>Create a new Module with the CLI:
+            <ul class="code">
+              <span>ng g m <i>module-name</i></span>
+            </ul>
+          </li>
+          <li>Create a new Component with the CLI (same directory as module): 
+              <ul class="code">
+                ng g c <i>component-name</i>
+              </ul>
+          </li>
+          <li>Add <i>component-name</i> to the exports array in the new module.</li>
+          <li>Add an export for <i>module-name</i> to the <i>public_api.ts</i> file.</li>
+          <li>Add <i>component-name</i> to the Declarations array in <i>app.module.ts</i></li>
+          <li>Add a new path to <i>component-name</i> in <i>app-routing.module.ts</i></li>
+          <li>Run the command to publish file(s) to Nexus (See <a href="howTo#version">C2C Version Rules</a> to determine type):
+              <ul class="code">
+                npm run pub
+              </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="col">
+      <h2>Creating a Common Directive</h2>
+      <h4>In Common Project:</h4>
+      <div>
+        <ol>
+          <li>Create a new Module with the CLI:
+            <ul class="code">
+              <span>ng g m <i>module-name</i></span>
+            </ul>
+          </li>
+          <li>Create a new Directive with the CLI (same directory as module): 
+              <ul class="code">
+                ng g d <i>directive-name</i>
+              </ul>
+          </li>
+          <li>TODO: Finish this list</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Importing and Using a Common Component/Directive</h2>
+      <div>
+        <ol>
+          <li>Run the command to pull new file(s) from Nexus:
+              <ul class="code">
+                npm run inst
+              </ul>
+          </li>
+          <li>In <i>app.module.ts</i>, add the <i>module-name</i> to the imports array.</li>
+          <li>Add the necessary markup to the HTML.</li>
+          <li>You may need to restart VS Code for it to pick up the changes.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  
+  <h2 id="version">C2C Version Rules</h2>
+  <div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Type of Change</th>
+          <th>Stage</th>
+          <th>Rule</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First Release</td>
+          <td>New Product</td>
+          <td>Start with 1.0.0</td>
+          <td>1.0.0</td>
+        </tr>
+        <tr>
+          <td>Bug Fixes or other minor changes</td>
+          <td>Patch release</td>
+          <td>Increment the third digit</td>
+          <td>1.0.1</td>
+        </tr>
+        <tr>
+          <td>New Features (that don't break existing features)</td>
+          <td>Minor release</td>
+          <td>Increment the middle digit</td>
+          <td>1.1.0</td>
+        </tr>
+        <tr>
+          <td>
+            Changes that break backwards compatibility
+            <br/>
+            <i>e.g. structural changes, new feature that breaks existing features</i>
+          </td>
+          <td>Major release</td>
+          <td>Increment the first digit</td>
+          <td>2.0.0</td>
+        </tr>
+      </tbody>
+
+    </table>
+  </div>
+</div>

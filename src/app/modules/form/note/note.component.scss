@@ -1,0 +1,48 @@
+.c2c-note-icon {
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 17px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.c2c-modal-icon {
+    background-repeat: no-repeat;
+    height: 17px;
+    width: 17px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.c2c-modal-icons {
+  width: fit-content;
+  float: right;
+
+  span {
+      display: inline-block;
+  }
+}
+
+.c2c-modal-title {
+    font-size: 24px;
+}
+
+.plain-text-field {
+    width: 100%;
+    min-height: 101px;
+}
+
+.modal-body {
+    padding-top: 10px;
+}
+
+.modal-xl .modal-lg {
+    max-width: 1080px;
+    min-width: 55%;
+    padding-top: 100px;
+}
+
+.mce-statusbar .mce-flow-layout-item {
+    margin: 0;
+    text-transform: capitalize;
+}

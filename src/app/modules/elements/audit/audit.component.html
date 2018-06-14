@@ -1,0 +1,6 @@
+<div>
+  <span id="c2c-audit" class="audit">
+    <span *ngIf="audit.enteredDate && audit.enteredBy">Entered {{ audit.enteredDate | date:'MM/dd/yyyy h:mm a' }} by {{ audit.enteredBy }};</span>
+    <span *ngIf="audit.updatedDate && audit.updatedBy"> Updated {{ audit.updatedDate | date:'MM/dd/yyyy h:mm a' }} by {{ audit.updatedBy }}</span>
+  </span>
+</div>

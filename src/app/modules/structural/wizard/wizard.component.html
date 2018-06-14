@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row no-gutters">
+    <div class="col-8 wizard-header">
+      <span class="c2c-header-title">{{ title }}</span>
+      <ul class="wizard-indicator-list">
+        <li *ngFor="let i of sections; let idx = index" class="wizard-page-indicator" [ngClass]="{ 'wizard-page-indicator-selected': (idx + 1) === pageIndex }"></li>
+      </ul>
+      <span class="c2c-data-item-value wizard-page-status">{{ pageIndex }} of {{ sections.length }}</span>
+    </div>
+    <div class="col-4 padded text-right">
+      <c2c-audit [audit]="audit"></c2c-audit>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-12">
+      <div class="c2c-card">
+        <div>
+          <div class="row no-gutters">
+            <span class="c2c-icons-sprite c2c-slide-left-arrow wizard-left-arrow-container" *ngIf="scroll > 0" (click)="slideLeft()"></span>
+            <ul #wizardList class="c2c-wizard-section-list">
+              <li id="c2c-wizard-tile-{{idx}}" *ngFor="let i of sections; let idx = index" class="c2c-wizard-section-li" [routerLinkActive]="['c2c-wizard-section-active']">
+                <a routerLink="{{i.route}}" (click)="pageIndex = (idx + 1);scrollTabintoView(idx);">
+                  <span class="c2c-wizard-section-text">{{i.page}}</span>
+                  <span class="c2c-wizard-flag" [ngClass]="getStatusClass(i.status)"></span>
+                </a>
+              </li>
+            </ul>
+            <span class="c2c-icons-sprite c2c-slide-right-arrow wizard-right-arrow-container" *ngIf="scroll < scrollWidth" (click)="slideRight()"></span>
+          </div>
+        </div>
+        <div class="row no-gutters" *ngIf="subTitle">
+          <span class="c2c-standard-text">{{subTitle}}</span>
+        </div>
+        <hr class="c2c-hr-2 mt-1 mb-1">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

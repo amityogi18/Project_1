@@ -1,0 +1,26 @@
+<input type="text"
+       class="form-control c2c-input"
+       placeholder="{{ placeholder }}"
+       autocomplete="off"
+       firstDayOfWeek="7"
+       ngbDatepicker
+       #datePicker="ngbDatepicker"
+       #valid="ngModel"
+       [(ngModel)]="value"
+       [disabled]="readonlyToggle"
+       [tabindex]="tabIndex"
+       [dayTemplate]="customDay"
+       [markDisabled]="isDisabled"
+       (ngModelChange)="verifyValidDate($event)">
+
+<ng-template #customDay let-date="date" let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled">
+  <span class="custom-day" [ngClass]="{ 'bg-primary': (selected == true && value != null) || (validation.status == 'VALID' && (currentMonth == date.month && enteredDay == date.day && currentMonth == enteredMonth)) }" *ngIf="currentMonth == date.month && thisDay != date.day">
+    {{ date.day }}
+  </span>
+  <span class="custom-day" [ngClass]="{ 'bg-primary': (selected == true || value == null) && currentMonth == thisMonth }" *ngIf="currentMonth == date.month && thisDay == date.day">
+    {{ date.day }}
+  </span>
+  <span class="custom-day" [class.text-muted]="disabled" *ngIf="currentMonth != date.month">
+    {{ date.day }}
+  </span>
+</ng-template>
